@@ -1,0 +1,104 @@
+
+###################################
+##                               ##
+##  makro definiujące geometrię  ##
+##       Władysław Nowak         ##
+##                               ##
+###################################
+#modifications awilczek
+/param/npd_choice      -1
+/param/bfwhmx          1.        	# in mm!
+/param/bfwhmy          1.		# in mm!
+/param/bt              120 MeV      #tylko MeV !!
+/param/pz              0.
+/param/pzz             0.
+/param/themin          19.5 deg
+/param/themax          20.5 deg
+/param/the2min         19.5 deg
+/param/the2max         20.5 deg
+#/param/themin          5.5 deg
+#/param/themax          26. deg
+#/param/the2min         5.5 deg
+#/param/the2max         26. deg
+/param/phimin          0. deg
+/param/phimax          360. deg
+#phimax=180. deg dla breakupu
+#zrob jeszcze parametr dla zakresu 
+#/param/update
+#tarcza
+/geom/target/is        1
+/geom/target/radius    1.0 cm
+/geom/target/high      0.3 cm
+/geom/target/frame     1.5 cm
+/geom/target/place_x   0. cm
+/geom/target/place_y   0. cm
+/geom/target/place_z   0. cm
+#BINA
+/geom/ball/visible     1
+/geom/ball/is          1
+/geom/ball/place_x     0. cm
+/geom/ball/place_y     0. cm
+/geom/ball/place_z     0. cm
+#Mwpc
+/geom/mwpc/is          1
+/geom/mwpc/dim_x       24. cm
+/geom/mwpc/dim_z       3.2 cm
+/geom/mwpc/dimGas_x    19. cm
+/geom/mwpc/dimGas_z    2. cm
+/geom/mwpc/hole_rIn    4.159 cm
+/geom/mwpc/hole_rOut   4.82 cm
+/geom/mwpc/place_x     0. cm
+/geom/mwpc/place_y     0. cm
+/geom/mwpc/place_z     30.0 cm
+#delta E
+/geom/deltae/visible   1
+/geom/deltae/is        1
+/geom/deltae/dim_x     1.5 cm
+/geom/deltae/dim_y     21.75 cm
+/geom/deltae/dim_z     0.1 cm          
+/geom/deltae/dim_f     0.002 cm          
+/geom/deltae/hole_rOut 5. cm
+/geom/deltae/separ     0.5 mm
+/geom/deltae/n_min     0
+/geom/deltae/n_max     12
+/geom/deltae/place_x   0. cm
+/geom/deltae/place_y   0. cm
+/geom/deltae/place_z   35.1 cm
+#folia
+/geom/foil/is          0
+/geom/foil/visible     0
+/geom/foil/dim_x       25 cm
+/geom/foil/dim_y       25 cm
+/geom/foil/dim_z       0.35 cm
+/geom/foil/hole_rOut   5 cm
+/geom/foil/place_x     0. cm
+/geom/foil/place_y     0. cm
+/geom/foil/place_z     36. cm
+# E przod
+/geom/wall/is          1
+/geom/wall/visible     1
+/geom/wall/r_in        75.09 cm
+/geom/wall/r_out       87.09 cm
+/geom/wall/dim_rx      140 cm
+/geom/wall/ang_0       0. deg
+/geom/wall/ang         6.3 deg
+/geom/wall/hole_rOut   5. cm
+/geom/wall/separ       0.05 cm
+#/geom/wall/n0         0
+/geom/wall/n_center    5
+/geom/wall/place_x     0.
+/geom/wall/place_y     0.
+/geom/wall/place_z     0.
+/geom/wall/dim_S       14 cm
+/geom/wall/dim_x       120 cm
+/geom/wall/dim_y       5 cm
+/geom/wall/dim_z       5 cm
+/geom/wall/n_max       10
+#/geom/update
+/physics/neutrons/model 0
+#/physics/neutrons/type 4
+/physics/broadening 1
+/generator/min 40
+/generator/max 240
+/fileOut/files 7
+/param/neumann 1

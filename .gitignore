@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+#Moje
+*.dat
+/bina_breakup2.11_dTarget

@@ -1,0 +1,25 @@
+#/run/beamOn 1
+#/gun/particle chargedgeantino
+#/vis/open VRML2FILE
+#/vis/drawVolume
+#/run/beamOn 1
+#/gun/particle geantino
+#/vis/open DAWNFILE
+#/run/beamOn 1
+###/geom/ball/place_y -2.5 cm
+###/geom/update
+#/control/saveHistory
+#/vis/open OGLIX
+#/vis/drawVolume
+##/vis/viewer/flush
+#/vis/viewer/set/viewpointThetaPhi 90 0
+##/vis/drawVolume Bina
+#/vis/scene/add/trajectories
+#/tracking/storeTrajectory 1
+##/vis/modeling/trajectories/create/drawByCharge
+##/vis/modeling/trajectories/drawByCharge-0/default/detDrawStepPts true
+##/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 3
+#/vis/scene/endOfEventAction accumulate
+#/run/beamOn 100002
+#####wszystkie runy +2
+/run/beamOn 101

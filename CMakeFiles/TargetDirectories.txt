@@ -1,0 +1,7 @@
+/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles/install/strip.dir
+/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles/edit_cache.dir
+/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles/rebuild_cache.dir
+/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles/list_install_components.dir
+/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles/install/local.dir
+/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles/bina_breakup2.11_dTarget.dir
+/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles/install.dir
