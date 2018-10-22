@@ -27,7 +27,21 @@ void Bina_EventAction::BeginOfEventAction(const G4Event* evt)
  G4int evtNb = evt->GetEventID();
  getNb(evtNb);
  if (!(evtNb%100)) G4cout << "\n--> Begin of event: " << evtNb <<G4endl;
+ fEnergy=0;
 }
 
+void Bina_EventAction::EndOfEventAction(const G4Event* evt)
+{
+G4int evt_Num = evt->GetEventID();
+G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+analysisManager->FillNtupleIColumn(1,0,evt_Num);
+analysisManager->FillNtupleDColumn(1,1,fEnergy);
+analysisManager->AddNtupleRow(1);
+
+
+}
+void Bina_EventAction::AddEnergy(G4double En){
+	fEnergy+=En;
+}
 
 

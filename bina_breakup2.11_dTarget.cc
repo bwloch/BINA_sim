@@ -3,6 +3,7 @@
 #include "Bina_PrimaryGeneratorAction.hh"
 #include "Bina_EventAction.hh"
 #include "Bina_SteppingAction.hh"
+#include "Bina_RunAction.hh"
 
 #include "G4RunManager.hh"
 #include "G4UImanager.hh"
@@ -16,15 +17,13 @@
 #endif
 #include <sys/stat.h>
 
-#include "time.h"
+
 
 
 
 int main(int argc,char** argv) 
 {
-clock_t begin, end;
-double time_spent;
-begin = clock();
+
 
 
  Bina_DetectorConstruction* Bina_detector = new Bina_DetectorConstruction;
@@ -53,12 +52,13 @@ begin = clock();
   G4VisManager* visManager = new Bina_VisManager;
   visManager->Initialize();
 #endif
-
+Bina_EventAction* EvnAct = new Bina_EventAction;
 
   // UserAction classes
   runManager->SetUserAction(new Bina_PrimaryGeneratorAction(Bina_detector));
-  runManager->SetUserAction(new Bina_EventAction);
-  runManager->SetUserAction(new Bina_SteppingAction(Bina_physics));
+  runManager->SetUserAction(EvnAct);
+  runManager->SetUserAction(new Bina_SteppingAction(Bina_physics,EvnAct));
+runManager->SetUserAction(new Bina_RunAction());
 
   //Initialize G4 kernel
   runManager->Initialize();
@@ -90,9 +90,7 @@ begin = clock();
 #endif
   delete runManager;
 
-end = clock();
-time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-G4cout<<"\n\t czas wykonywania programu ="<<time_spent<<"\n";
+
   return 0;
  }
  else

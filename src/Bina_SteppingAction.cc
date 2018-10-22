@@ -23,8 +23,8 @@
 
 
 std::ofstream file,file2,file3;
-Bina_SteppingAction::Bina_SteppingAction(Bina_PhysicsList* myPL)
-  : myPhysicsList(myPL)
+Bina_SteppingAction::Bina_SteppingAction(Bina_PhysicsList* myPL, Bina_EventAction* myEvt)
+  : myPhysicsList(myPL),fEventAction(myEvt)
 {
   G4cout<<"Stepping action=====================================================================-=-=-=-=-=-\n";
   file_types=myPL->GetFileOutputs();
@@ -360,6 +360,14 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
 
     if(thePostPVname(0,5)=="EDet_" || thePrePVname(0,5)=="EDet_") // step in E 
       {
+
+
+//TESTTTT
+	fEventAction->AddEnergy(theStep->GetTotalEnergyDeposit());
+//TESTTT
+
+
+
 	// first step in the given E 
 	if (bound==1 
 	  && (thePrePVname(0,5)!="EDet_" ||thePreCopyNo != theLastCopyNo))

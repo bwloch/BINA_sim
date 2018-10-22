@@ -33,4 +33,5 @@
 
 #Moje
 *.dat
+*.root
 /bina_breakup2.11_dTarget
