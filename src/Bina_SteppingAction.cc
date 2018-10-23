@@ -22,11 +22,13 @@
 
 
 
-std::ofstream file,file2,file3;
+//std::ofstream file,file2,file3;
 Bina_SteppingAction::Bina_SteppingAction(Bina_PhysicsList* myPL, Bina_EventAction* myEvt)
   : myPhysicsList(myPL),fEventAction(myEvt)
 {
   G4cout<<"Stepping action=====================================================================-=-=-=-=-=-\n";
+
+/*
   file_types=myPL->GetFileOutputs();
   G4cout<<"file_types==Bina_PhysicsList=="<<file_types<<'\n';
     if (file_types&1)
@@ -35,6 +37,8 @@ Bina_SteppingAction::Bina_SteppingAction(Bina_PhysicsList* myPL, Bina_EventActio
     file2.open("./Bina_out2.dat");
   if (file_types&4)
     file3.open("./Bina_out3.dat");
+    
+    */
   int i;
   static double en_t[3],theta_t[3],phi_t[3],pos_t[3];
 
@@ -54,9 +58,11 @@ Bina_SteppingAction::Bina_SteppingAction(Bina_PhysicsList* myPL, Bina_EventActio
 
 Bina_SteppingAction::~Bina_SteppingAction()
 {
+/*
   if (file)  file.close();
   if (file2) file2.close();
   if (file3) file3.close();
+*/
 }
 
 void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
@@ -121,7 +127,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
       bound = 0;
 //      ebound = 0;
 
-      if (tab[2] || tab[3] || tab[4])
+      if (tab[2] || tab[3] || tab[4]) //tutaj chyba sprawdzana jest akceptancja? 
       {
       // rozmycie energii deponowanej w Saladzie (uwzglednienie zdolnosci rozdzielczej)
 
@@ -145,7 +151,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
           if (edet<0) edet = 0;
           tab[13] = edet;
         }
-
+/*
         if (file_types&1) 
         {
           file <<G4endl;
@@ -160,18 +166,22 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
 	    setw(14)<<tab[i];
           }
         }
+        */
       // write to file Bina_ext.dat
+      /*
         if (file_types&2) 
         {
           file2 <<G4endl;
           file2 << std::setw(7)<<tab[0];
           file2 << std::setw(3)<<tab[1];
         }
-
-        if (tab[0]==0&&(index1>3||index1<0)) index0=0,index1=0;
+	*/
+     //   if (tab[0]==0&&(index1>3||index1<0)) index0=0,index1=0; tutaj tez komenatrz
 
         //modified by awilczek\/
 //        G4cout<<index1<<' '<<index0<<'\n';
+
+/*
         if (file_types&4)
         {
           if (Bina_PrimaryGeneratorAction::GetChoice()==2) 
@@ -209,8 +219,12 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
         index0++;
         }
       }
+      
+      */
 
 //G4cout<<(index1++)<<' '<<(index0++)<<'\n';
+  
+  /*
     if (file_types&2) {
       for (i=0;i<6;i++) file2 << std::setw(14) <<tab3[i];
 
@@ -219,7 +233,16 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
         else file2 << std::setw(14)<<tab2[i];
         }
       }
+      
+      */
     }
+    //TEST
+    //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+    position = Bina_PrimaryGeneratorAction::GetStartPosition();
+    fEventAction->AddHits(tab[1],tab[5],tab[6],tab3[5],tab3[4],tab3[3],tab[11],tab[12],tab[8],position[0],position[1],position[2]);
+    //G4cout<<"\t MyLog: position[0]="<<position[0]<<G4endl;
+    //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+    //TEST
   SNumberPrev = 0;
   tab[2]=tab[3]=tab[4]=0;
   }
@@ -229,13 +252,13 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
   else if (ParticleType == G4Deuteron::DeuteronDefinition()) {tab[1] = 3.;}//test[1] = 3.;}	//deuteron
   else if (ParticleType == G4Proton::ProtonDefinition()) {tab[1] = 2.;}//test[1] = 2.;}		//proton
   else tab[1] = 0.;
-  }
+  
 
 
 
   if (tab[1])
   {
-      
+ 
     if(thePrePVname(0,8)=="Target_p"&&theTrack->GetParentID()==0)
     {
       theLastPVname = thePrePVname;
@@ -268,6 +291,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
       tab3[3] = energy[i];
       tab3[4] = phi[i];
       tab3[5] = theta[i];
+
     }
     if(thePrePVname(0,8)!="Target_p"&& theLastPVname(0,8)=="Target_p"&&
        theTrack->GetParentID()==0)
@@ -363,7 +387,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
 
 
 //TESTTTT
-	fEventAction->AddEnergy(theStep->GetTotalEnergyDeposit());
+//	fEventAction->AddEnergy(theStep->GetTotalEnergyDeposit());
 //TESTTT
 
 
@@ -406,6 +430,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
     // then suspend the track
     theTrack->SetTrackStatus(fSuspend);
 
+  }
   }
  //  G4cout<<tab[11]<<' '<<secProtEnergy<<G4endl;
   //  tab[11+2*ilosc]+=secProtEnergy;
