@@ -2,6 +2,8 @@
 Geant4 simulation of BINA detector
 
 TODO:
--dopisać w EventAction funkcjie AddXXX
--na koniec stepping action uruchamiac AddXXX
--dodac nowe kolumny w ntupli w RunAction
+-Clean stuff
+-add settings like pluto generator path
+-inne reakcje z pluta
+-optymalizacja ciecia?
+-ochrona przed za krotkim plikiem z pluta 

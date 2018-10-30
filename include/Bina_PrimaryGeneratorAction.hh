@@ -9,6 +9,10 @@
 //#include "CLHEP/Random/RandGaussQ.h"
 #include "CLHEP/Random/RandFlat.h"
 #include "CLHEP/Random/Ranlux64Engine.h"
+#include <fstream>
+#include <iostream>
+#include "G4LorentzVector.hh"
+
 
 
 class Bina_DetectorConstruction;
@@ -114,6 +118,8 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     };
 
   private:
+    G4LorentzVector v4;
+    std::ifstream file_Pluto_generator;
     G4ParticleGun* particleGun1;		//proton 1
     G4ParticleGun* particleGun2;		//proton 2
     G4ParticleGun* particleGun3;		//neutron
@@ -130,7 +136,9 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     double* upunif(double*);
 
     void ugelast_read(void);
+    void read_part_momentum(double*);
     void break_read(void);
+
 
     double gelkin(double,double*,double*);  // elastic kinematics
     double rinterp(double [5][5][5][5], double, double, double, double);
@@ -156,7 +164,7 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     double p_mass, d_mass, n_mass;	// pointer to particle mass
 
     double x1a[4],x2a[4],x3a[4],x4a[4];
-    double x1a_r[4],x2a_r[4],x3a_r[4],x4a_r[4];
+    double x1a_r[5],x2a_r[5],x3a_r[5],x4a_r[5];
     double ya_r[5][5][5][5], yax_r[5][5][5][5];
     double yay_r[5][5][5][5],yaxx_r[5][5][5][5],yaxy_r[5][5][5][5],yayy_r[5][5][5][5];
    // G4RandGauss* GaussDist;//[2];		//table with diferent generators with gaussian distribution

@@ -13,6 +13,7 @@
 //#include "Ranlux64Engine.h"
 #include <cmath>
 
+#include <fstream>
 #ifndef min
 #define min(x,y) ((x) < (y) ? (x) : (y))
 #endif
@@ -35,6 +36,9 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
   : myDetector(myDC)
 {
   #include "Bina_Detector.cfg"
+  
+ // file.open("/home/bwloch/GEANT4/Symulacje/BINA/PLUTO/output.evt",ios::in);
+  
   generator_min=myDC->GetKinematicsMin();
   generator_max=myDC->GetKinematicsMax();
   npd_choice = myDC->GetNpdChoice(); 
@@ -102,8 +106,14 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
   }
   else if (npd_choice == 2)
   {
+    file_Pluto_generator.open("/home/bwloch/GEANT4/Symulacje/BINA/PLUTO/test_output.txt",std::ios::in);
+   if( !file_Pluto_generator.is_open()){
+	G4cout<<"\n\n MyLog: Plik nie zostal otwarty\n";
+	exit(1);
+	}
+  
     //filell.open("fileoutput.txt",ios::out|ios::app);
-    break_read();			//read cross table and analysing power
+ //   break_read();			//read cross table and analysing power
     particleGun1 = new G4ParticleGun(n_particle);
     particleGun2 = new G4ParticleGun(n_particle);
     particleGun3 = new G4ParticleGun(n_particle);
@@ -135,6 +145,7 @@ Bina_PrimaryGeneratorAction::~Bina_PrimaryGeneratorAction()
 
 void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
+
   GetChoice(npd_choice);
 
   if (npd_choice <  0)
@@ -143,6 +154,7 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     elastic(momentum);
     Pos();		//random vertex
     GetStartEnergy(bt1*1000.);
+    
     GetStartAngleTheta(t1);
     GetStartAnglePhi(fi1);
     GetStartPosition(vertex[0],vertex[1],vertex[2]);
@@ -206,13 +218,66 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     particleGun2->GeneratePrimaryVertex(anEvent);
 
   }
+  else if(npd_choice == 2){
+	Pos();
+  	double pluto_momentum[4];
+  	
+  	//reading deuteron
+	read_part_momentum(pluto_momentum);
+  	v4.setE(pluto_momentum[0]);
+  	v4.setPx(pluto_momentum[1]);
+  	v4.setPy(pluto_momentum[2]);
+  	v4.setPz(pluto_momentum[3]);
+  	particleGun1->SetParticleMomentumDirection(v4);
+  	bt1=(v4.e()-v4.m());
+  	t1=v4.theta();
+  	fi1=v4.phi();
+  	particleGun1->SetParticleEnergy(bt1*CLHEP::GeV);
+  	particleGun1->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+  	particleGun1->GeneratePrimaryVertex(anEvent);
+  	//reading proton
+  	read_part_momentum(pluto_momentum);
+  	v4.setE(pluto_momentum[0]);
+  	v4.setPx(pluto_momentum[1]);
+  	v4.setPy(pluto_momentum[2]);
+  	v4.setPz(pluto_momentum[3]);
+  	bt2=(v4.e()-v4.m());
+  	t2=v4.theta();
+  	fi2=v4.phi();
+  	particleGun2->SetParticleMomentumDirection(v4);
+  	particleGun1->SetParticleEnergy(bt2*CLHEP::GeV);
+  	particleGun2->SetParticleEnergy((v4.e()-v4.m())*CLHEP::GeV);
+  	particleGun2->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+  	particleGun2->GeneratePrimaryVertex(anEvent);
+  	//reading neutron
+  	read_part_momentum(pluto_momentum);
+  	v4.setE(pluto_momentum[0]);
+  	v4.setPx(pluto_momentum[1]);
+  	v4.setPy(pluto_momentum[2]);
+  	v4.setPz(pluto_momentum[3]);
+  	bt3=(v4.e()-v4.m());
+  	t3=v4.theta();
+  	fi3=v4.phi();
+  	particleGun3->SetParticleMomentumDirection(v4);
+  	particleGun3->SetParticleEnergy(bt3*CLHEP::GeV);
+  	particleGun3->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+  	particleGun3->GeneratePrimaryVertex(anEvent);
+      GetStartEnergy(bt1*1000.,bt2*1000.,bt3*1000.);
+      GetStartAngleTheta(t1*180./M_PI,t2*180./M_PI,t3*180./M_PI);
+      GetStartAnglePhi(fi1*180./M_PI,fi2*180./M_PI,fi3*180./M_PI);
+      GetStartPosition(vertex[0],vertex[1],vertex[2]);
+  }
+  /*
   else //(npd_choice == 2)
   {
+G4cout << "\t MyLog:1"<<G4endl;
     //filell.open("fileoutput.txt",ios::out|ios::app);
     //G4cout <<"Npd_choice : "<<npd_choice<<G4endl;
+    fprintf(stderr, "err");
     ugbreak(momentum);
+G4cout << "\t MyLog:2"<<G4endl;
     Pos();
-
+G4cout << "\t MyLog:3"<<G4endl;
     GetStartEnergy(bt1*1000.,bt2*1000.,bt3*1000.);
     GetStartAngleTheta(t1,t2,t3);
     GetStartAnglePhi(fi1,fi2,fi3);
@@ -233,9 +298,12 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     particleGun1->GeneratePrimaryVertex(anEvent);
     particleGun2->GeneratePrimaryVertex(anEvent);
     particleGun3->GeneratePrimaryVertex(anEvent);
+G4cout << "\t MyLog:4"<<G4endl;
 //    chooser++;
     //filell.close();
   }
+  */
+
 }
 
 void Bina_PrimaryGeneratorAction::RandomInit(int level )
@@ -570,7 +638,7 @@ double* Bina_PrimaryGeneratorAction::ugbreak(double* ptot)
   w_e1_0 = &e1_0;
   w_e3_0 = &e3_0;
   bp = bp_temp;
-
+G4cout << "\t MyLog: ugbreak 0"<<G4endl;
 //  double *w_bp1,*w_bp2,*w_bp3;
 
 //  w_bp1 = &bp1;
@@ -654,11 +722,12 @@ for (i=0;i<180;i++) {
     // rs if ((icros == 0) || ((pzz == 0) && (pz == 0))) phi1=-180+360*RandomFlat(aj1phi);
 
     if ((icros == 0) || ((pzz == 0) && (pz == 0))) phi1=360*RandomFlat(aj1phi);
-
+G4cout << "\t MyLog: ugbreak 1"<<G4endl;
     t1 = theta1;
     t2 = theta2;
     if (icros != 0)    // uniformly generated protons
     {
+G4cout << "\t MyLog: ugbreak 2"<<G4endl;    
 // find indexes of the cross section tables for interpolation procedures
 
  // for(t1=11.;t1<26.;t1+=0.5) {
@@ -715,12 +784,14 @@ for (i=0;i<180;i++) {
         }
       }
       //change matrix from [0..n-1] to [1..n]
-      for (i=0;i<4;i++)
+      for(i=0;i<4;i++)
       {
+      G4cout << "\t MyLog: ugbreak przed i="<<i;
         x1a_r[i+1] = x1a[i];
         x2a_r[i+1] = x2a[i];
         x3a_r[i+1] = x3a[i];
         x4a_r[i+1] = x4a[i];
+        G4cout <<" MyLog: ugbreak po i="<<i<<G4endl;
       }
 
       for (i=0;i<4;i++)
@@ -729,11 +800,15 @@ for (i=0;i<180;i++) {
             for (l=0;l<4;l++) {ya_r[i+1][j+1][k+1][l+1]=ya[i][j][k][l];
 //filell<<i<<' '<<j<<' '<<k<<' '<<l<<' '<<ya_r[i+1][j+1][k+1][l+1]<<G4endl;
             }
+            G4cout << "\t MyLog: ugbreak przed rinterp"<<G4endl;
       csi = rinterp(ya_r,x0[0],x0[1],x0[2],x0[3]);
+      G4cout << "\t MyLog: ugbreak za rinterp"<<G4endl;
       if (csilocmax<csi) {csilocmax=csi;
                           toSix++;
                           if (toSix>5) csmax=csilocmax;}
+                          G4cout << "\t MyLog: ugbreak 3"<<G4endl;
       cstest = csmax*RandomFlat(ajcs1);
+      G4cout << "\t MyLog: ugbreak 3"<<G4endl;
 //filell<<t1<<' '<<t2<<' '<<phi12<<' '<<s0<<' '<<csi<<' '<<cstest<<G4endl;
 //G4cout<<x0[0]<<' '<<x0[1]<<' '<<x0[2]<<' '<<x0[3]<<' '<<ii<<' '<<jj<<' '<<kk<<' '<<ll<<' '<<csi<<
 //' '<<cstest<<G4endl;
@@ -756,6 +831,7 @@ for (i=0;i<180;i++) {
       if (csi < cstest) continue;
 //if (csi>csmax*0.5) G4cout<<phi12<<' '<<s0<<G4endl;
 //   - of analysing powers
+G4cout << "\t MyLog: ugbreak 4"<<G4endl;
       if((pzz != 0)&&(pzz != 0))
       {
         for(i=0;i<4;i++)
@@ -766,6 +842,7 @@ for (i=0;i<180;i++) {
             {
               for(l=0;l<4;l++)
 	      {
+	      G4cout << "\t MyLog: ugbreak 5"<<G4endl;
 	        ii = ind[0] + i-1;
                 jj = ind[1] + j-1;
                 kk = ind[2] + k-1;
@@ -790,7 +867,7 @@ for (i=0;i<180;i++) {
         axyi = rinterp(yaxy_r,x0[0],x0[1],x0[2],x0[3]);
         axxi = rinterp(yaxx_r,x0[0],x0[1],x0[2],x0[3]);
         ayyi = rinterp(yayy_r,x0[0],x0[1],x0[2],x0[3]);
-
+G4cout << "\t MyLog: ugbreak 3"<<G4endl;
         phi1 = cspol(axi,ayi,axxi,axyi,ayyi);
       }
     }
@@ -859,6 +936,7 @@ if (s>=s0-0.0000005) {
   break;
 }
 do {
+G4cout << "\t MyLog: ugbreak 4"<<G4endl;
 //if (switcher==2) G4cout<<e1_0<<' '<<e2_0<<' '<<s<<' '<<icnn<<G4endl;
       e1_1=e1_0;
       e2_1=e2_0;
@@ -963,7 +1041,7 @@ itry=0;
     ptot[i+6] = ptot3[i];
 
   }
-
+G4cout << "\t MyLog:break end"<<G4endl;
 
 
   return ptot;
@@ -1270,6 +1348,7 @@ double Bina_PrimaryGeneratorAction::rinterp(double ytmp[5][5][5][5],double x1,do
 /////////////////  splint4(x1a_r,x2a_r,x3a_r,x4a_r,ya,y3a,m1,m2,m3,m4,x1,x2,x3,x4,w_y);
   spline4(ya,m1,m2,m3,m4,y3a);
   splint4(ya,y3a,m1,m2,m3,m4,x1,x2,x3,x4,w_y);
+  G4cout << "\t MyLog: rinterp y="<<y<<G4endl;
 //  filell<<"Yyyyyyyyyyyyyyy "<<y*100.<<G4endl;
    return y;
 }
@@ -1306,6 +1385,7 @@ void Bina_PrimaryGeneratorAction::spline4(double *ya,
   ya = (double*)ya_const;
   y3a = (double*)y3a_const;
 //  x4a_r = (double*)x4a_const;
+
 }
 
 void Bina_PrimaryGeneratorAction::splint4(double *ya,double *y2a,
@@ -1365,6 +1445,7 @@ void Bina_PrimaryGeneratorAction::splint4(double *ya,double *y2a,
   ya = (double*)ya_const;
   y2a = (double*)y2a_const;
 //  filell<<"splint4 "<<*y<<G4endl;
+
 }
 
 void Bina_PrimaryGeneratorAction::splint(double* xa,double* ya,double* y2a,int n,double x,double *y)
@@ -1407,6 +1488,7 @@ h/=4.;
 *y=h;
 //filell<<y<<' '<<h<<G4endl;
 */
+
 }
 void Bina_PrimaryGeneratorAction::spline(double x[], double y[], int n, double yp1, double ypn, double *y2)
 {
@@ -1450,6 +1532,7 @@ void Bina_PrimaryGeneratorAction::spline(double x[], double y[], int n, double y
     y2[k]=y2[k]*y2[k+1]+u[k];
 
   free_vector(u,1,n-1);
+
 }
 double *Bina_PrimaryGeneratorAction::vector(long nl, long nh)
 /* allocate a double vector with subscript range v[nl..nh] */
@@ -1516,6 +1599,19 @@ void Bina_PrimaryGeneratorAction::ugelast_read(void)
     }
   }
   file.close();
+}
+void Bina_PrimaryGeneratorAction::read_part_momentum(double pluto_momentum[]){
+if( !file_Pluto_generator.is_open()){
+	G4cout<<"Plik nie zostal otwarty\n";
+	exit(666);
+	}
+if(!file_Pluto_generator.eof()){
+	for(int i=0;i<4;i++) file_Pluto_generator>>pluto_momentum[i];	
+	}
+	else {
+	G4cout<<"Plik skończon\n";
+	exit(666);
+	}
 }
 
 void Bina_PrimaryGeneratorAction::break_read(void)

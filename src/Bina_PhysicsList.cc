@@ -142,7 +142,9 @@ delete physicsMessenger;
 
 void Bina_PhysicsList::SetCuts()
 {
+
 //SetCutsWithDefault();
+
   SetCutValue(0.01*mm, "proton");
   SetCutValue(0.01*mm, "e-");
   SetCutValue(0.01*mm, "e+");

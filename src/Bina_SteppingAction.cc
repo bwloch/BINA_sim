@@ -67,7 +67,7 @@ Bina_SteppingAction::~Bina_SteppingAction()
 
 void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
 {
-
+//G4cout << "\n\t MyLog: UserSteppingAction"<<G4endl;
   G4Track * theTrack = theStep->GetTrack();
 
   static int once = 1, ilosc = 0, bound=0;//,ilosc2 = 0,
@@ -252,7 +252,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
   else if (ParticleType == G4Deuteron::DeuteronDefinition()) {tab[1] = 3.;}//test[1] = 3.;}	//deuteron
   else if (ParticleType == G4Proton::ProtonDefinition()) {tab[1] = 2.;}//test[1] = 2.;}		//proton
   else tab[1] = 0.;
-  
+  }
 
 
 
@@ -431,7 +431,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
     theTrack->SetTrackStatus(fSuspend);
 
   }
-  }
+  
  //  G4cout<<tab[11]<<' '<<secProtEnergy<<G4endl;
   //  tab[11+2*ilosc]+=secProtEnergy;
   if (theTrack->GetParentID()==0) prevParentName=ParticleType->GetParticleName();
