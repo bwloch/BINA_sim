@@ -37,7 +37,6 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
 {
   #include "Bina_Detector.cfg"
   
- // file.open("/home/bwloch/GEANT4/Symulacje/BINA/PLUTO/output.evt",ios::in);
   
   generator_min=myDC->GetKinematicsMin();
   generator_max=myDC->GetKinematicsMax();
@@ -78,6 +77,7 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
   n_mass = particle->GetPDGMass()/1000.;
 
   //*********************** Uwaga dokladnosc masy to 6 miejsc po przecinku *GeV ***********
+  open_pluto_file();
 
   if (npd_choice <  0)
   {
@@ -93,27 +93,24 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
     particleGun1->SetParticleDefinition(particle);
   }
   else if ((npd_choice == 0)||(npd_choice == 1))
-  {
+  {	
     if (npd_choice == 1) ugelast_read();  //read cross table
     particleGun1 = new G4ParticleGun(n_particle);
     particleGun2 = new G4ParticleGun(n_particle);
+    event_cleaner_particle_gun = new G4ParticleGun(n_particle);
 
     particle = particleTable->FindParticle("proton");
     particleGun1->SetParticleDefinition(particle);
 
     particle = particleTable->FindParticle("deuteron");
     particleGun2->SetParticleDefinition(particle);
+    
+        particle = particleTable->FindParticle("e-");
+    event_cleaner_particle_gun->SetParticleDefinition(particle);
   }
   else if (npd_choice == 2)
   {
-    file_Pluto_generator.open("/home/bwloch/GEANT4/Symulacje/BINA/PLUTO/test_output.txt",std::ios::in);
-   if( !file_Pluto_generator.is_open()){
-	G4cout<<"\n\n MyLog: Plik nie zostal otwarty\n";
-	exit(1);
-	}
-  
-    //filell.open("fileoutput.txt",ios::out|ios::app);
- //   break_read();			//read cross table and analysing power
+      event_cleaner_particle_gun = new G4ParticleGun(n_particle);
     particleGun1 = new G4ParticleGun(n_particle);
     particleGun2 = new G4ParticleGun(n_particle);
     particleGun3 = new G4ParticleGun(n_particle);
@@ -147,10 +144,33 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
 
   GetChoice(npd_choice);
-
+  	double pluto_momentum[4];
   if (npd_choice <  0)
   {
    // G4cout <<"Npd_choice : "<<npd_choice<<G4endl;
+   
+   	Pos();
+
+  	
+  	//reading particle
+	read_part_momentum(pluto_momentum);
+  	v4.setE(pluto_momentum[0]);
+  	v4.setPx(pluto_momentum[1]);
+  	v4.setPy(pluto_momentum[2]);
+  	v4.setPz(pluto_momentum[3]);
+  	particleGun1->SetParticleMomentumDirection(v4);
+  	bt1=(v4.e()-v4.m());
+  	t1=v4.theta();
+  	fi1=v4.phi();
+  	particleGun1->SetParticleEnergy(bt1*CLHEP::GeV);
+  	particleGun1->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+  	particleGun1->GeneratePrimaryVertex(anEvent);
+
+      GetStartEnergy(bt1*1000.);
+      GetStartAngleTheta(t1*180./M_PI);
+      GetStartAnglePhi(fi1*180./M_PI);
+      GetStartPosition(vertex[0],vertex[1],vertex[2]);
+   /*
     elastic(momentum);
     Pos();		//random vertex
     GetStartEnergy(bt1*1000.);
@@ -166,39 +186,79 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     particleGun1->SetParticleEnergy(bt*CLHEP::GeV);
 
     particleGun1->GeneratePrimaryVertex(anEvent);
+    */
   }
   else if (npd_choice == 0)
   {
-    //G4cout <<"Npd_choice : "<<npd_choice<<G4endl;
-    upunif(momentum);
-    ProcNb(npd_choice);
+  	Pos();
 
-    Pos(); 		//random vertex
-    // rs GetStartEnergy(bt1*1000.,bt1*1000.);		// this isn't error !!!
-    GetStartEnergy(bt*1000.,bt*1000.);
-    GetStartAngleTheta(t1,t2);
-    GetStartAnglePhi(fi1,fi2);
+/// Black Magic begin
+//generujemy dodatkowa czastke 
+//zeby zapewnic zapic wszystkich czastek w tym samym evencie
+// bo czastki zapisywane sa dopiero po rozpoczeciu symulacji kolejnej!!
+  	event_cleaner_particle_gun->SetParticleMomentumDirection(G4ThreeVector(0.0,0.0,-1.0));
+    	event_cleaner_particle_gun->SetParticleEnergy(0.0001*CLHEP::GeV);
+    	event_cleaner_particle_gun->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+    	event_cleaner_particle_gun->GeneratePrimaryVertex(anEvent);
+// Black Magic end	
+    	
+  	//reading deut
+	read_part_momentum(pluto_momentum);
+  	v4.setE(pluto_momentum[0]);
+  	v4.setPx(pluto_momentum[1]);
+  	v4.setPy(pluto_momentum[2]);
+  	v4.setPz(pluto_momentum[3]);
+  	particleGun2->SetParticleMomentumDirection(v4);
+  	bt1=(v4.e()-v4.m());
+  	t1=v4.theta();
+  	fi1=v4.phi();
+  	particleGun2->SetParticleEnergy(bt1*CLHEP::GeV);
+  	particleGun2->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
 
-    GetStartPosition(vertex[0],vertex[1],vertex[2]);
+  	//reading prot
+  	//G4cout<<"\n\t Mylog: PrimGneAct Ed="<<pluto_momentum[0]<<" "
+  	read_part_momentum(pluto_momentum);
 
-    particleGun1->SetParticleMomentumDirection(G4ThreeVector(momentum[0],momentum[1],momentum[2]));
-    particleGun2->SetParticleMomentumDirection(G4ThreeVector(momentum[3],momentum[4],momentum[5]));
+  	v4.setE(pluto_momentum[0]);
+  	v4.setPx(pluto_momentum[1]);
+  	v4.setPy(pluto_momentum[2]);
+  	v4.setPz(pluto_momentum[3]);
+  	bt2=(v4.e()-v4.m());
 
-    particleGun1->SetParticleEnergy(bt*CLHEP::GeV);
-    particleGun2->SetParticleEnergy(bt*CLHEP::GeV);
+  	t2=v4.theta();
+  	fi2=v4.phi();
+  	particleGun1->SetParticleMomentumDirection(v4);
+  	particleGun1->SetParticleEnergy(bt2*CLHEP::GeV);
+  	particleGun1->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
 
-    particleGun1->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
-    particleGun2->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
 
-    particleGun1->GeneratePrimaryVertex(anEvent);
-    particleGun2->GeneratePrimaryVertex(anEvent);
+      GetStartEnergy(bt1*1000.,bt2*1000.);
+      GetStartAngleTheta(t1*180./M_PI,t2*180./M_PI);
+      GetStartAnglePhi(fi1*180./M_PI,fi2*180./M_PI);
+      GetStartPosition(vertex[0],vertex[1],vertex[2]);
+      
+      particleGun1->GeneratePrimaryVertex(anEvent);
+    	particleGun2->GeneratePrimaryVertex(anEvent);
+    	
+
   }
   else if (npd_choice == 1)
   {
     //G4cout <<"Npd_choice : "<<npd_choice<<G4endl;
+
     ugelast(momentum);
     ProcNb(npd_choice);
     Pos();
+    
+    /// Black Magic begin
+//generujemy dodatkowa czastke 
+//zeby zapewnic zapic wszystkich czastek w tym samym evencie
+// bo czastki zapisywane sa dopiero po rozpoczeciu symulacji kolejnej!!
+  	event_cleaner_particle_gun->SetParticleMomentumDirection(G4ThreeVector(0.0,0.0,-1.0));
+    	event_cleaner_particle_gun->SetParticleEnergy(0.0001*CLHEP::GeV);
+    	event_cleaner_particle_gun->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+    	event_cleaner_particle_gun->GeneratePrimaryVertex(anEvent);
+// Black Magic end
 
     GetStartEnergy(bt1*1000.,bt2*1000.);
     GetStartAngleTheta(t1,t2);
@@ -216,11 +276,23 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
     particleGun1->GeneratePrimaryVertex(anEvent);
     particleGun2->GeneratePrimaryVertex(anEvent);
+    
 
   }
   else if(npd_choice == 2){
+  
+  
 	Pos();
-  	double pluto_momentum[4];
+	
+/// Black Magic begin
+//generujemy dodatkowa czastke 
+//zeby zapewnic zapic wszystkich czastek w tym samym evencie
+// bo czastki zapisywane sa dopiero po rozpoczeciu symulacji kolejnej!!
+  	event_cleaner_particle_gun->SetParticleMomentumDirection(G4ThreeVector(0.0,0.0,-1.0));
+    	event_cleaner_particle_gun->SetParticleEnergy(0.0001*CLHEP::GeV);
+    	event_cleaner_particle_gun->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+    	event_cleaner_particle_gun->GeneratePrimaryVertex(anEvent);
+// Black Magic end
   	
   	//reading deuteron
 	read_part_momentum(pluto_momentum);
@@ -311,8 +383,8 @@ void Bina_PrimaryGeneratorAction::RandomInit(int level )
 	CLHEP::Ranlux64Engine *Engine1 = new CLHEP::Ranlux64Engine(aj1bx,level);
 	CLHEP::Ranlux64Engine *Engine2 = new CLHEP::Ranlux64Engine(aj1by,level);
 
-  CLHEP::RandFlat *GD1 = new CLHEP::RandFlat(*Engine1);
-  CLHEP::RandFlat *GD2 = new CLHEP::RandFlat(*Engine2);
+  CLHEP::RandGauss *GD1 = new CLHEP::RandGauss(*Engine1);
+  CLHEP::RandGauss *GD2 = new CLHEP::RandGauss(*Engine2);
 GaussDist[0] = GD1;
 GaussDist[1] = GD2;
 
@@ -350,7 +422,16 @@ CLHEP::RandFlat *GD11 = new CLHEP::RandFlat(*Engine11);
   FlatDist[7] = GD10;
   FlatDist[8] = GD11;
 }
-
+void Bina_PrimaryGeneratorAction::open_pluto_file(){
+	char file_path[500];
+	if(npd_choice==0) sprintf(file_path,"data/output_elast_dp.txt");
+	if(npd_choice==2) sprintf(file_path,"data/output_break_dd.txt");
+	file_Pluto_generator.open(file_path,std::ios::in);
+	if( !file_Pluto_generator.is_open()){
+		G4cout<<"\n\n MyLog: Plik nie zostal otwarty\n";
+		exit(1);
+	}
+}
 double Bina_PrimaryGeneratorAction::RandomGauss(double seed, double mean , double deviation )
 {
   double num;

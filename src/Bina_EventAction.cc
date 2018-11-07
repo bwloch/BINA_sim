@@ -57,7 +57,7 @@ fP3Type=-999;
 fXv=-999;
 fYv=-999;
 fZv=-999;
-
+//G4cout<<"\n\t MyLog: BeginOfEventAction";
 
  G4int evtNb = evt->GetEventID();
  getNb(evtNb);
@@ -104,9 +104,18 @@ analysisManager->FillNtupleDColumn(1,28,fPhi3);
 analysisManager->FillNtupleDColumn(1,29,fXv);
 analysisManager->FillNtupleDColumn(1,30,fYv);
 analysisManager->FillNtupleDColumn(1,31,fZv);
+analysisManager->FillNtupleDColumn(1,32,fPhi1);
+analysisManager->FillNtupleDColumn(1,33,fPhi2);
+analysisManager->FillNtupleDColumn(1,34,fPhi3);
+analysisManager->FillNtupleDColumn(1,35,fTh1);
+analysisManager->FillNtupleDColumn(1,36,fTh2);
+analysisManager->FillNtupleDColumn(1,37,fTh3);
+analysisManager->FillNtupleDColumn(1,38,fEn1);
+analysisManager->FillNtupleDColumn(1,39,fEn2);
+analysisManager->FillNtupleDColumn(1,40,fEn3);
 //analysisManager->FillNtupleDColumn(1,1,fEnergy);
 analysisManager->AddNtupleRow(1);
-
+//G4cout<<" \n\t Myog: EventAction En1="<<fEn1<<" \t En2="<<fEn2<<"\t En1+En2="<<fEn1+fEn2<<G4endl;
 
 }
 
@@ -162,6 +171,7 @@ fXv=Xv;
 fYv=Yv;
 fZv=Zv;
 fN++;
+//G4cout<<"\n\t Mylog: AddHits En1="<<En<<" \t Ptype="<<Ptype<<"";
 }
 
 

@@ -58,6 +58,7 @@ Bina_SteppingAction::Bina_SteppingAction(Bina_PhysicsList* myPL, Bina_EventActio
 
 Bina_SteppingAction::~Bina_SteppingAction()
 {
+G4cout<<" \n\t MyLog: ~BinaSteppingAction";
 /*
   if (file)  file.close();
   if (file2) file2.close();
@@ -239,7 +240,8 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
     //TEST
     //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     position = Bina_PrimaryGeneratorAction::GetStartPosition();
-    fEventAction->AddHits(tab[1],tab[5],tab[6],tab3[5],tab3[4],tab3[3],tab[11],tab[12],tab[8],position[0],position[1],position[2]);
+    if(tab[1]>0) fEventAction->AddHits(tab[1],tab[5],tab[6],tab3[5],tab3[4],tab3[3],tab[11],tab[12],tab[8],position[0],position[1],position[2]);
+    
     //G4cout<<"\t MyLog: position[0]="<<position[0]<<G4endl;
     //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     //TEST

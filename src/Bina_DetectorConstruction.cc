@@ -347,11 +347,11 @@ G4VPhysicalVolume* Bina_DetectorConstruction::Construct()
   
   // - > liquid hydrogen
   trgt_sol = new G4Tubs("Target_liquid_solid",0.,toutrad,thigh,0.,2.*M_PI);
-  trgt_log = new G4LogicalVolume(trgt_sol, lD2, "Target_liquid_logical");
+  trgt_log = new G4LogicalVolume(trgt_sol, lH2, "Target_liquid_logical");
 
   // - > target window (aramica 25 um); here in [mm]
 
-  hight = 0.000000001;
+  hight = 0.0125;
 
   trgt_win_sol = new G4Tubs("Target_window_solid",0.,toutrad,hight,0.,2.*M_PI);
   trgt_win_log = new G4LogicalVolume(trgt_win_sol, Aramica, "Target_window_logical");
@@ -461,7 +461,7 @@ G4VPhysicalVolume* Bina_DetectorConstruction::Construct()
   int j=0,k=0,l=0,n=0,plane=1;
 
   temp2 = 0.5*wire_space*cm;
-/*
+
   while ((delta = sqrt(0.25*mwpcholeOut*mwpcholeOut - 0.25*temp2*temp2)) >= 0.)
   {
 
@@ -495,7 +495,7 @@ G4VPhysicalVolume* Bina_DetectorConstruction::Construct()
     temp2 += wire_space*cm;
     k++;
   }
-*/
+
 
   j = 0;
 
@@ -507,7 +507,7 @@ G4VPhysicalVolume* Bina_DetectorConstruction::Construct()
  						    ,mwpc1_wire_plane_mother_log[i],mwpc1_gas_phs,false,i+1);
     if (i%3 == 1) // anode
     {
-/*
+
       temp2 = 0.5*wire_space*cm;
       k = 0;
       if (plane == 1)	//vertical plane
@@ -602,7 +602,7 @@ G4VPhysicalVolume* Bina_DetectorConstruction::Construct()
 
       if (plane == 3) plane = 0;
       plane ++;
-*/    
+ 
 }
 
     //catode

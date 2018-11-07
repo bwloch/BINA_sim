@@ -116,6 +116,7 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
       if (num != 10) temp = num;
       return temp;
     };
+    
 
   private:
     G4LorentzVector v4;
@@ -123,6 +124,7 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     G4ParticleGun* particleGun1;		//proton 1
     G4ParticleGun* particleGun2;		//proton 2
     G4ParticleGun* particleGun3;		//neutron
+    G4ParticleGun* event_cleaner_particle_gun;
     Bina_DetectorConstruction* myDetector;
 
     void RandomInit(int =2);			//generators initialization
@@ -137,6 +139,7 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 
     void ugelast_read(void);
     void read_part_momentum(double*);
+    void open_pluto_file();
     void break_read(void);
 
 
@@ -169,7 +172,7 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     double yay_r[5][5][5][5],yaxx_r[5][5][5][5],yaxy_r[5][5][5][5],yayy_r[5][5][5][5];
    // G4RandGauss* GaussDist;//[2];		//table with diferent generators with gaussian distribution
    // RandGaurs *GaD = new RandGauss[2];
-    CLHEP::RandFlat* GaussDist[2];
+    CLHEP::RandGauss* GaussDist[2];
     CLHEP:: RandFlat* FlatDist[9];
 };
 
