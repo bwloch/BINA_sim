@@ -1,26 +1,23 @@
 #include "Bina_RunAction.hh"
+#include "Bina_EventAction.hh"
 
 #include "G4Run.hh"
 #include "G4RunManager.hh"
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
 
-Bina_RunAction::Bina_RunAction()
+Bina_RunAction::Bina_RunAction(Bina_EventAction* eventAction)
+: fEventAction(eventAction)
 { 
-}
-Bina_RunAction::~Bina_RunAction(){
-
-}
-void Bina_RunAction::BeginOfRunAction(const G4Run* ){
-fbegin = clock(); //Start clock
 G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 G4cout << "\n\t MyLog: Using " << analysisManager->GetType() << G4endl;
-analysisManager->OpenFile("test.root");
 //Creating Ntuples
+analysisManager->SetFileName("test.root");
+if( fEventAction){
 analysisManager->SetFirstNtupleId(1);
 analysisManager->CreateNtuple("T","Title");
 analysisManager->CreateNtupleIColumn("Event_evNum");
-analysisManager->CreateNtupleDColumn("Event_fX1");
+analysisManager->CreateNtupleDColumn("Event_fX1",fEventAction->GetfX1vec());
 analysisManager->CreateNtupleDColumn("Event_fX2");
 analysisManager->CreateNtupleDColumn("Event_fX3");
 analysisManager->CreateNtupleDColumn("Event_fY1");
@@ -60,10 +57,18 @@ analysisManager->CreateNtupleDColumn("Event_fVexTh3");
 analysisManager->CreateNtupleDColumn("Event_fVexEn1");
 analysisManager->CreateNtupleDColumn("Event_fVexEn2");
 analysisManager->CreateNtupleDColumn("Event_fVexEn3");
-
-  
 analysisManager->FinishNtuple();
 }
+}
+Bina_RunAction::~Bina_RunAction(){
+ delete G4AnalysisManager::Instance(); 
+}
+void Bina_RunAction::BeginOfRunAction(const G4Run* ){
+fbegin = clock(); //Start clock
+G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+analysisManager->OpenFile();
+}
+
 void Bina_RunAction::EndOfRunAction(const G4Run* ){
 //Writing and closing root file
 G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();

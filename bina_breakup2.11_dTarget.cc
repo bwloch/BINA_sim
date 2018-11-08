@@ -58,7 +58,7 @@ Bina_EventAction* EvnAct = new Bina_EventAction;
   runManager->SetUserAction(new Bina_PrimaryGeneratorAction(Bina_detector));
   runManager->SetUserAction(EvnAct);
   runManager->SetUserAction(new Bina_SteppingAction(Bina_physics,EvnAct));
-runManager->SetUserAction(new Bina_RunAction());
+runManager->SetUserAction(new Bina_RunAction(EvnAct));
 
   //Initialize G4 kernel
   runManager->Initialize();

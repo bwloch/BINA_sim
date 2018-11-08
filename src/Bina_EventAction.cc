@@ -57,6 +57,7 @@ fP3Type=-999;
 fXv=-999;
 fYv=-999;
 fZv=-999;
+fX1vec.clear();
 //G4cout<<"\n\t MyLog: BeginOfEventAction";
 
  G4int evtNb = evt->GetEventID();
@@ -73,7 +74,7 @@ G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
 //Filling Ntuples
 analysisManager->FillNtupleIColumn(1,0,evt_Num);
-analysisManager->FillNtupleDColumn(1,1,fX1);
+//analysisManager->FillNtupleDColumn(1,1,fX1vec[0]);
 analysisManager->FillNtupleDColumn(1,2,fX2);
 analysisManager->FillNtupleDColumn(1,3,fX3);
 analysisManager->FillNtupleDColumn(1,4,fY1);
@@ -144,6 +145,7 @@ if(pos_num==1){
 	fE1=E;
 	fdE1=dE;
 	fP1Type=1;
+	fX1vec.push_back(X);
 }
 if(pos_num==2){
 	fX2=X;

@@ -5,11 +5,14 @@
 #include "G4UserEventAction.hh"
 #include "g4root.hh"
 #include "globals.hh"
+#include <vector>
+
 
 
 class Bina_EventAction : public G4UserEventAction
 {
  private:
+ std::vector <G4double> fX1vec;
   G4double  fX1, fX2, fX3;	         // Coord. on MWPC
   G4double  fY1, fY2, fY3;             // -||-
   G4int    fP1Type,fP2Type,fP3Type;      // Kind of particle
@@ -32,6 +35,7 @@ class Bina_EventAction : public G4UserEventAction
     virtual void   BeginOfEventAction(const G4Event*);
     virtual void   EndOfEventAction(const G4Event*);
     void AddHits(G4int Ptype, G4double X, G4double Y, G4double Th, G4double phi, G4double En, G4double Ed, G4double E, G4double dE, G4double Xv, G4double Yv, G4double Zv);
+    std::vector<G4double>& GetfX1vec() { return fX1vec; }
     inline static int getNb(int num = -1 )
     {
       static int temp;
