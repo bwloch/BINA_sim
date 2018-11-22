@@ -118,14 +118,14 @@ void Bina_PhysicsList::RegisterHadrons(G4String option) {
   // Hadron Inelastic Physics
   ////RegisterPhysics( new G4HadronPhysicsFTFP_BERT_HP(verb));
 //  RegisterPhysics( new G4HadronPhysicsQGSP_BIC_HP(verb));
-    RegisterPhysics( new G4HadronElasticPhysicsHP(verb) );
-    RegisterPhysics( new G4HadronPhysicsQGSP_BERT_HP(verb));  
+ //   RegisterPhysics( new G4HadronElasticPhysicsHP(verb) );
+   // RegisterPhysics( new G4HadronPhysicsQGSP_BERT_HP(verb));  
     }
 
   else if (option=='1') 
     {
-    RegisterPhysics( new G4HadronElasticPhysics(verb) );
-    RegisterPhysics( new G4HadronPhysicsQGSP_BERT(verb));  
+   // RegisterPhysics( new G4HadronElasticPhysics(verb) );
+   // RegisterPhysics( new G4HadronPhysicsQGSP_BERT(verb));  
     }
 }
 
@@ -145,10 +145,10 @@ void Bina_PhysicsList::SetCuts()
 
 //SetCutsWithDefault();
 
-  SetCutValue(0.01*mm, "proton");
-  SetCutValue(0.01*mm, "e-");
-  SetCutValue(0.01*mm, "e+");
-  SetCutValue(0.01*mm, "gamma");      
+  SetCutValue(0.007*mm, "proton");
+  SetCutValue(0.007*mm, "e-");
+  SetCutValue(0.007*mm, "e+");
+  SetCutValue(0.007*mm, "gamma");      
 
 }
 

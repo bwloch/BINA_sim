@@ -280,7 +280,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
 	else if (tab[1]==3) i=1;
 	else G4cout << "Unknown particle in StepingAction ... tab[1] = "<<tab[1]<<G4endl;
       }
-      else if (npd_choice == 2)
+      else if (npd_choice == 2 || npd_choice == 3)
       {
         if      (fabs(energy[0] - startEnergy)<0.001) i = 0;
 	else if (fabs(energy[1] - startEnergy)<0.001) i = 1;

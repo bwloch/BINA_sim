@@ -125,6 +125,23 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
     particleGun3->SetParticleDefinition(particle);
 
   }
+    else if (npd_choice == 3)
+  {
+      event_cleaner_particle_gun = new G4ParticleGun(n_particle);
+    particleGun1 = new G4ParticleGun(n_particle);
+    particleGun2 = new G4ParticleGun(n_particle);
+    particleGun3 = new G4ParticleGun(n_particle);
+
+    particle = particleTable->FindParticle("deuteron");
+    particleGun1->SetParticleDefinition(particle);
+
+    G4ParticleDefinition* particle2 = particleTable->FindParticle("proton");
+    particleGun2->SetParticleDefinition(particle2);
+
+    particle = particleTable->FindParticle("neutron");
+    particleGun3->SetParticleDefinition(particle);
+
+  }
   else
   {
     G4cout << "Error in configuration file geo.mac !!! Bad npd_choice = "<<npd_choice<<G4endl;
@@ -136,8 +153,8 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
 Bina_PrimaryGeneratorAction::~Bina_PrimaryGeneratorAction()
 {
   delete particleGun1;
-  if ((npd_choice == 0)||(npd_choice == 1)) delete particleGun2;
-  if (npd_choice == 2 ) delete particleGun3;
+  if (npd_choice >= 0) delete particleGun2;
+  if (npd_choice >=2 ) delete particleGun3;
 }
 
 void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
@@ -246,8 +263,7 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   {
     //G4cout <<"Npd_choice : "<<npd_choice<<G4endl;
 
-    ugelast(momentum);
-    ProcNb(npd_choice);
+
     Pos();
     
     /// Black Magic begin
@@ -279,7 +295,7 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     
 
   }
-  else if(npd_choice == 2){
+  else if(npd_choice == 2 || npd_choice == 3){
   
   
 	Pos();
@@ -317,12 +333,15 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   	t2=v4.theta();
   	fi2=v4.phi();
   	particleGun2->SetParticleMomentumDirection(v4);
-  	particleGun1->SetParticleEnergy(bt2*CLHEP::GeV);
-  	particleGun2->SetParticleEnergy((v4.e()-v4.m())*CLHEP::GeV);
+  	particleGun2->SetParticleEnergy(bt2*CLHEP::GeV);
+  	//particleGun2->SetParticleEnergy((v4.e()-v4.m())*CLHEP::GeV);
   	particleGun2->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
   	particleGun2->GeneratePrimaryVertex(anEvent);
   	//reading neutron
+  	
+  	//bez neutronu
   	read_part_momentum(pluto_momentum);
+  	/*
   	v4.setE(pluto_momentum[0]);
   	v4.setPx(pluto_momentum[1]);
   	v4.setPy(pluto_momentum[2]);
@@ -334,6 +353,7 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   	particleGun3->SetParticleEnergy(bt3*CLHEP::GeV);
   	particleGun3->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
   	particleGun3->GeneratePrimaryVertex(anEvent);
+  	*/
       GetStartEnergy(bt1*1000.,bt2*1000.,bt3*1000.);
       GetStartAngleTheta(t1*180./M_PI,t2*180./M_PI,t3*180./M_PI);
       GetStartAnglePhi(fi1*180./M_PI,fi2*180./M_PI,fi3*180./M_PI);
@@ -425,7 +445,8 @@ CLHEP::RandFlat *GD11 = new CLHEP::RandFlat(*Engine11);
 void Bina_PrimaryGeneratorAction::open_pluto_file(){
 	char file_path[500];
 	if(npd_choice==0) sprintf(file_path,"data/output_elast_dp.txt");
-	if(npd_choice==2) sprintf(file_path,"data/output_break_dd.txt");
+	if(npd_choice==2) sprintf(file_path,"data/output_break_dp.txt");
+	if(npd_choice==3) sprintf(file_path,"data/output_break_dd.txt");	
 	file_Pluto_generator.open(file_path,std::ios::in);
 	if( !file_Pluto_generator.is_open()){
 		G4cout<<"\n\n MyLog: Plik nie zostal otwarty\n";
