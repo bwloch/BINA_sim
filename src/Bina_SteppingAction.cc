@@ -240,8 +240,14 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
     //TEST
     //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     position = Bina_PrimaryGeneratorAction::GetStartPosition();
-    if(tab[1]>0) fEventAction->AddHits(tab[1],tab[5],tab[6],tab3[5],tab3[4],tab3[3],tab[11],tab[12],tab[8],position[0],position[1],position[2]);
-    
+    if(tab[1]>0) fEventAction->AddHits(tab[1],tab[5],tab[6],tab3[5],tab3[4],tab3[3],tab[11],tab[12],tab[8],position[0],position[1],position[2],tab[2],tab[4],tab[3]);
+    for(int licz=0;licz<25;licz++) {
+    	tab[licz]=-999;
+    	tab2[licz]=-999;
+    	}
+    for(int licz=0;licz<10;licz++) {
+    	tab3[licz]=-999;
+    }
     //G4cout<<"\t MyLog: position[0]="<<position[0]<<G4endl;
     //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     //TEST
@@ -280,7 +286,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
 	else if (tab[1]==3) i=1;
 	else G4cout << "Unknown particle in StepingAction ... tab[1] = "<<tab[1]<<G4endl;
       }
-      else if (npd_choice == 2)
+      else if (npd_choice == 2 || npd_choice == 3)
       {
         if      (fabs(energy[0] - startEnergy)<0.001) i = 0;
 	else if (fabs(energy[1] - startEnergy)<0.001) i = 1;
@@ -353,8 +359,8 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
 		  if(tab[3]==0||(tab[3]==1&&thePreCopyNo!= theLastCopyNo ))tab[3]++;
 		  if(tab[3]==2)ilosc=1;
 		}
-	      if(thePrePVname(0,7)=="DeltaE_")tab[8 + 2*ilosc] = thePreCopyNo;
-	      if(thePrePVname(0,7)!="DeltaE_")tab[8 + 2*ilosc] = thePostCopyNo;
+	      if(thePrePVname(0,7)=="DeltaE_")tab[8 + 2*ilosc] = thePreCopyNo+1;
+	      if(thePrePVname(0,7)!="DeltaE_")tab[8 + 2*ilosc] = thePostCopyNo+1;
 	      tab2[2 + 2*ilosc] = theTrack->GetKineticEnergy();
 	      bound = 0;
 	    }

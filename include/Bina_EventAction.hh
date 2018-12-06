@@ -24,6 +24,9 @@ class Bina_EventAction : public G4UserEventAction
   G4double fTh1, fTh2, fTh3;            // Theta angles of particles (vert)
   G4double fPhi1, fPhi2, fPhi3;          // Phi angles of particles (vert)
   G4double  fXv, fYv, fZv;			// Vertex position
+  G4int fFlagMWPC1, fFlagE1,fFlagdE1;
+   G4int fFlagMWPC2, fFlagE2,fFlagdE2;
+    G4int fFlagMWPC3, fFlagE3,fFlagdE3;
   G4int Part_num;
   
   
@@ -34,7 +37,7 @@ class Bina_EventAction : public G4UserEventAction
   public:
     virtual void   BeginOfEventAction(const G4Event*);
     virtual void   EndOfEventAction(const G4Event*);
-    void AddHits(G4int Ptype, G4double X, G4double Y, G4double Th, G4double phi, G4double En, G4double Ed, G4double E, G4double dE, G4double Xv, G4double Yv, G4double Zv);
+    void AddHits(G4int Ptype, G4double X, G4double Y, G4double Th, G4double phi, G4double En, G4double Ed, G4double E, G4double dE, G4double Xv, G4double Yv, G4double Zv, G4int FlagMWPC, G4int FlagE, G4int FlagdE);
     std::vector<G4double>& GetfX1vec() { return fX1vec; }
     inline static int getNb(int num = -1 )
     {

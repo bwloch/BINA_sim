@@ -24,6 +24,7 @@ Bina_EventAction::~Bina_EventAction()
 
 void Bina_EventAction::BeginOfEventAction(const G4Event* evt)
 {
+
 //Initialization
 Part_num=0;
 fN=0;
@@ -57,6 +58,15 @@ fP3Type=-999;
 fXv=-999;
 fYv=-999;
 fZv=-999;
+fFlagMWPC1=0;
+fFlagE1=0;
+fFlagdE1=0;
+fFlagMWPC2=0;
+fFlagE2=0;
+fFlagdE2=0;
+fFlagMWPC3=0;
+fFlagE3=0;
+fFlagdE3=0;
 fX1vec.clear();
 //G4cout<<"\n\t MyLog: BeginOfEventAction";
 
@@ -68,13 +78,14 @@ fX1vec.clear();
 
 void Bina_EventAction::EndOfEventAction(const G4Event* evt)
 {
+
 //G4cout<<"\n\t MyLog: koniec Eventu"<<G4endl;
 G4int evt_Num = evt->GetEventID();
 G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
 //Filling Ntuples
 analysisManager->FillNtupleIColumn(1,0,evt_Num);
-//analysisManager->FillNtupleDColumn(1,1,fX1vec[0]);
+analysisManager->FillNtupleDColumn(1,1,fX1);
 analysisManager->FillNtupleDColumn(1,2,fX2);
 analysisManager->FillNtupleDColumn(1,3,fX3);
 analysisManager->FillNtupleDColumn(1,4,fY1);
@@ -114,13 +125,22 @@ analysisManager->FillNtupleDColumn(1,37,fTh3);
 analysisManager->FillNtupleDColumn(1,38,fEn1);
 analysisManager->FillNtupleDColumn(1,39,fEn2);
 analysisManager->FillNtupleDColumn(1,40,fEn3);
+analysisManager->FillNtupleIColumn(1,41,fFlagMWPC1);
+analysisManager->FillNtupleIColumn(1,42,fFlagMWPC2);
+analysisManager->FillNtupleIColumn(1,43,fFlagMWPC3);
+analysisManager->FillNtupleIColumn(1,44,fFlagE1);
+analysisManager->FillNtupleIColumn(1,45,fFlagE2);
+analysisManager->FillNtupleIColumn(1,46,fFlagE3);
+analysisManager->FillNtupleIColumn(1,47,fFlagdE1);
+analysisManager->FillNtupleIColumn(1,48,fFlagdE2);
+analysisManager->FillNtupleIColumn(1,49,fFlagdE3);
 //analysisManager->FillNtupleDColumn(1,1,fEnergy);
 analysisManager->AddNtupleRow(1);
 //G4cout<<" \n\t Myog: EventAction En1="<<fEn1<<" \t En2="<<fEn2<<"\t En1+En2="<<fEn1+fEn2<<G4endl;
 
 }
 
-void Bina_EventAction::AddHits(G4int Ptype, G4double X, G4double Y, G4double Th, G4double phi, G4double En, G4double Ed, G4double E, G4double dE, G4double Xv, G4double Yv, G4double Zv){
+void Bina_EventAction::AddHits(G4int Ptype, G4double X, G4double Y, G4double Th, G4double phi, G4double En, G4double Ed, G4double E, G4double dE, G4double Xv, G4double Yv, G4double Zv, G4int FlagMWPC, G4int FlagE, G4int FlagdE){
 G4int pos_num=0;
 
 //Checking particle type and its position in FBEvent structure
@@ -136,6 +156,8 @@ if(Ptype==3) pos_num=2; //Deuteron
 
 //Filling variables
 if(pos_num==1){
+//proton
+
 	fX1=X;
 	fY1=Y;
 	fTh1=Th;
@@ -145,9 +167,13 @@ if(pos_num==1){
 	fE1=E;
 	fdE1=dE;
 	fP1Type=1;
-	fX1vec.push_back(X);
+	fFlagMWPC1=FlagMWPC;
+	fFlagE1=FlagE;
+	fFlagdE1=FlagdE;
 }
 if(pos_num==2){
+
+//deuteron or proton
 	fX2=X;
 	fY2=Y;
 	fTh2=Th;
@@ -157,8 +183,12 @@ if(pos_num==2){
 	fE2=E;
 	fdE2=dE;
 	fP2Type=2;
+	fFlagMWPC2=FlagMWPC;
+	fFlagE2=FlagE;
+	fFlagdE2=FlagdE;
 }
 if(pos_num==3){
+//neutron
 	fX3=X;
 	fY3=Y;
 	fTh3=Th;
@@ -168,6 +198,9 @@ if(pos_num==3){
 	fE3=E;
 	fdE3=dE;
 	fP3Type=3;
+	fFlagMWPC3=FlagMWPC;
+	fFlagE3=FlagE;
+	fFlagdE3=FlagdE;
 }
 fXv=Xv;
 fYv=Yv;
