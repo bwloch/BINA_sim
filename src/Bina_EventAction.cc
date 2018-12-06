@@ -170,6 +170,7 @@ if(pos_num==1){
 	fFlagMWPC1=FlagMWPC;
 	fFlagE1=FlagE;
 	fFlagdE1=FlagdE;
+
 }
 if(pos_num==2){
 
