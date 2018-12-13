@@ -58,9 +58,9 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
   tYplace = myDC->GetTargetYplace();
   tZplace = myDC->GetTargetZplace();
   int n_particle = 1;
-  bt1 = 0.;		bt2 = 0.;		bt3 = 0.;
-  t1  = 0.;		t2  = 0.;		t3  = 0.;
-  fi1 = 0.;             fi2 = 0.;		fi3 = 0.;
+  bt1 = 0.;		bt2 = 0.;		bt3 = 0.; bt4=0.;
+  t1  = 0.;		t2  = 0.;		t3  = 0.; t4=0.;
+  fi1 = 0.;             fi2 = 0.;		fi3 = 0.; fi4=0.;
   bt /=1000.;
 
   RandomInit();
@@ -142,6 +142,27 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
     particleGun3->SetParticleDefinition(particle);
 
   }
+  else if(npd_choice == 4)
+  {
+
+    event_cleaner_particle_gun = new G4ParticleGun(n_particle);
+    particleGun1 = new G4ParticleGun(n_particle);
+    particleGun2 = new G4ParticleGun(n_particle);
+    particleGun3 = new G4ParticleGun(n_particle);
+    particleGun4 = new G4ParticleGun(n_particle);
+    
+    particle = particleTable->FindParticle("proton");
+    particleGun1->SetParticleDefinition(particle);
+
+    particle = particleTable->FindParticle("proton");
+    particleGun2->SetParticleDefinition(particle);
+
+    particle = particleTable->FindParticle("neutron");
+    particleGun3->SetParticleDefinition(particle);
+    
+    particle = particleTable->FindParticle("neutron");
+    particleGun4->SetParticleDefinition(particle);
+  }
   else
   {
     G4cout << "Error in configuration file geo.mac !!! Bad npd_choice = "<<npd_choice<<G4endl;
@@ -152,13 +173,16 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
 
 Bina_PrimaryGeneratorAction::~Bina_PrimaryGeneratorAction()
 {
+delete event_cleaner_particle_gun;
   delete particleGun1;
   if (npd_choice >= 0) delete particleGun2;
   if (npd_choice >=2 ) delete particleGun3;
+  if (npd_choice==4) delete particleGun4;
 }
 
 void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
+
 
   GetChoice(npd_choice);
   	double pluto_momentum[4];
@@ -167,7 +191,16 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
    // G4cout <<"Npd_choice : "<<npd_choice<<G4endl;
    
    	Pos();
-
+   	
+/// Black Magic begin
+//generujemy dodatkowa czastke 
+//zeby zapewnic zapic wszystkich czastek w tym samym evencie
+// bo czastki zapisywane sa dopiero po rozpoczeciu symulacji kolejnej!!
+  	event_cleaner_particle_gun->SetParticleMomentumDirection(G4ThreeVector(0.0,0.0,-1.0));
+    	event_cleaner_particle_gun->SetParticleEnergy(0.0001*CLHEP::GeV);
+    	event_cleaner_particle_gun->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+    	event_cleaner_particle_gun->GeneratePrimaryVertex(anEvent);
+// Black Magic end	
   	
   	//reading particle
 	read_part_momentum(pluto_momentum);
@@ -187,23 +220,7 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
       GetStartAngleTheta(t1*180./M_PI);
       GetStartAnglePhi(fi1*180./M_PI);
       GetStartPosition(vertex[0],vertex[1],vertex[2]);
-   /*
-    elastic(momentum);
-    Pos();		//random vertex
-    GetStartEnergy(bt1*1000.);
-    
-    GetStartAngleTheta(t1);
-    GetStartAnglePhi(fi1);
-    GetStartPosition(vertex[0],vertex[1],vertex[2]);
 
-    particleGun1->SetParticleMomentumDirection(G4ThreeVector(momentum[0],momentum[1],momentum[2]));
-
-    particleGun1->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
-
-    particleGun1->SetParticleEnergy(bt*CLHEP::GeV);
-
-    particleGun1->GeneratePrimaryVertex(anEvent);
-    */
   }
   else if (npd_choice == 0)
   {
@@ -299,6 +316,7 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   
   
 	Pos();
+	int Is_Neutron_Simulated=0;
 	
 /// Black Magic begin
 //generujemy dodatkowa czastke 
@@ -334,68 +352,114 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   	fi2=v4.phi();
   	particleGun2->SetParticleMomentumDirection(v4);
   	particleGun2->SetParticleEnergy(bt2*CLHEP::GeV);
-  	//particleGun2->SetParticleEnergy((v4.e()-v4.m())*CLHEP::GeV);
   	particleGun2->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
   	particleGun2->GeneratePrimaryVertex(anEvent);
+  	if(Is_Neutron_Simulated==1){
   	//reading neutron
   	
-  	//bez neutronu
-  	read_part_momentum(pluto_momentum);
-  	/*
-  	v4.setE(pluto_momentum[0]);
-  	v4.setPx(pluto_momentum[1]);
-  	v4.setPy(pluto_momentum[2]);
-  	v4.setPz(pluto_momentum[3]);
-  	bt3=(v4.e()-v4.m());
-  	t3=v4.theta();
-  	fi3=v4.phi();
-  	particleGun3->SetParticleMomentumDirection(v4);
-  	particleGun3->SetParticleEnergy(bt3*CLHEP::GeV);
-  	particleGun3->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
-  	particleGun3->GeneratePrimaryVertex(anEvent);
-  	*/
+  
+  		read_part_momentum(pluto_momentum);
+	  	v4.setE(pluto_momentum[0]);
+	  	v4.setPx(pluto_momentum[1]);
+	  	v4.setPy(pluto_momentum[2]);
+	  	v4.setPz(pluto_momentum[3]);
+	  	bt3=(v4.e()-v4.m());
+	  	t3=v4.theta();
+	  	fi3=v4.phi();
+	  	particleGun3->SetParticleMomentumDirection(v4);
+	  	particleGun3->SetParticleEnergy(bt3*CLHEP::GeV);
+	  	particleGun3->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+	  	particleGun3->GeneratePrimaryVertex(anEvent);
+	  
+  	}
+  	
       GetStartEnergy(bt1*1000.,bt2*1000.,bt3*1000.);
       GetStartAngleTheta(t1*180./M_PI,t2*180./M_PI,t3*180./M_PI);
       GetStartAnglePhi(fi1*180./M_PI,fi2*180./M_PI,fi3*180./M_PI);
       GetStartPosition(vertex[0],vertex[1],vertex[2]);
+      
   }
-  /*
-  else //(npd_choice == 2)
-  {
-G4cout << "\t MyLog:1"<<G4endl;
-    //filell.open("fileoutput.txt",ios::out|ios::app);
-    //G4cout <<"Npd_choice : "<<npd_choice<<G4endl;
-    fprintf(stderr, "err");
-    ugbreak(momentum);
-G4cout << "\t MyLog:2"<<G4endl;
-    Pos();
-G4cout << "\t MyLog:3"<<G4endl;
-    GetStartEnergy(bt1*1000.,bt2*1000.,bt3*1000.);
-    GetStartAngleTheta(t1,t2,t3);
-    GetStartAnglePhi(fi1,fi2,fi3);
-    GetStartPosition(vertex[0],vertex[1],vertex[2]);
+  else if(npd_choice==4){
 
-    particleGun1->SetParticleMomentumDirection(G4ThreeVector(momentum[0],momentum[1],momentum[2]));
-    particleGun2->SetParticleMomentumDirection(G4ThreeVector(momentum[3],momentum[4],momentum[5]));
-    particleGun3->SetParticleMomentumDirection(G4ThreeVector(momentum[6],momentum[7],momentum[8]));
-
-    particleGun1->SetParticleEnergy(bt1*CLHEP::GeV);
-    particleGun2->SetParticleEnergy(bt2*CLHEP::GeV);
-    particleGun3->SetParticleEnergy(bt3*CLHEP::GeV);
-
-    particleGun1->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
-    particleGun2->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
-    particleGun3->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
-
-    particleGun1->GeneratePrimaryVertex(anEvent);
-    particleGun2->GeneratePrimaryVertex(anEvent);
-    particleGun3->GeneratePrimaryVertex(anEvent);
-G4cout << "\t MyLog:4"<<G4endl;
-//    chooser++;
-    //filell.close();
+  	Pos();
+	int Is_Neutron_Simulated=0;
+	
+/// Black Magic begin
+//generujemy dodatkowa czastke 
+//zeby zapewnic zapic wszystkich czastek w tym samym evencie
+// bo czastki zapisywane sa dopiero po rozpoczeciu symulacji kolejnej!!
+  	event_cleaner_particle_gun->SetParticleMomentumDirection(G4ThreeVector(0.0,0.0,-1.0));
+    	event_cleaner_particle_gun->SetParticleEnergy(0.0001*CLHEP::GeV);
+    	event_cleaner_particle_gun->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+    	event_cleaner_particle_gun->GeneratePrimaryVertex(anEvent);
+// Black Magic end	
+	
+	
+	read_part_momentum(pluto_momentum);
+  	v4.setE(pluto_momentum[0]);
+  	v4.setPx(pluto_momentum[1]);
+  	v4.setPy(pluto_momentum[2]);
+  	v4.setPz(pluto_momentum[3]);
+  	particleGun1->SetParticleMomentumDirection(v4);
+  	bt1=(v4.e()-v4.m());
+  	t1=v4.theta();
+  	fi1=v4.phi();
+  	particleGun1->SetParticleEnergy(bt1*CLHEP::GeV);
+  	particleGun1->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+  	particleGun1->GeneratePrimaryVertex(anEvent);
+  	//reading proton
+  	read_part_momentum(pluto_momentum);
+  	v4.setE(pluto_momentum[0]);
+  	v4.setPx(pluto_momentum[1]);
+  	v4.setPy(pluto_momentum[2]);
+  	v4.setPz(pluto_momentum[3]);
+  	bt2=(v4.e()-v4.m());
+  	t2=v4.theta();
+  	fi2=v4.phi();
+  	particleGun2->SetParticleMomentumDirection(v4);
+  	particleGun2->SetParticleEnergy(bt2*CLHEP::GeV);
+  	particleGun2->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+  	particleGun2->GeneratePrimaryVertex(anEvent);
+  	  	if(Is_Neutron_Simulated==1){
+  	  	
+  	  	read_part_momentum(pluto_momentum);
+	  	v4.setE(pluto_momentum[0]);
+	  	v4.setPx(pluto_momentum[1]);
+	  	v4.setPy(pluto_momentum[2]);
+	  	v4.setPz(pluto_momentum[3]);
+	  	bt3=(v4.e()-v4.m());
+	  	t3=v4.theta();
+	  	fi3=v4.phi();
+	  	particleGun3->SetParticleMomentumDirection(v4);
+	  	particleGun3->SetParticleEnergy(bt3*CLHEP::GeV);
+	  	particleGun3->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+	  	particleGun3->GeneratePrimaryVertex(anEvent);
+	  	
+	  	read_part_momentum(pluto_momentum);
+	  	v4.setE(pluto_momentum[0]);
+	  	v4.setPx(pluto_momentum[1]);
+	  	v4.setPy(pluto_momentum[2]);
+	  	v4.setPz(pluto_momentum[3]);
+	  	bt4=(v4.e()-v4.m());
+	  	t4=v4.theta();
+	  	fi4=v4.phi();
+	  	particleGun3->SetParticleMomentumDirection(v4);
+	  	particleGun3->SetParticleEnergy(bt4*CLHEP::GeV);
+	  	particleGun3->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+	  	particleGun3->GeneratePrimaryVertex(anEvent);
+  
   }
-  */
+  else {
+ 	 read_part_momentum(pluto_momentum);
+ 	 read_part_momentum(pluto_momentum);
+  }
+      GetStartEnergy(bt1*1000.,bt2*1000.,bt3*1000.,bt4*1000.);
+      GetStartAngleTheta(t1*180./M_PI,t2*180./M_PI,t3*180./M_PI,t4*180./M_PI);
+      GetStartAnglePhi(fi1*180./M_PI,fi2*180./M_PI,fi3*180./M_PI,fi4*180./M_PI);
+      GetStartPosition(vertex[0],vertex[1],vertex[2]);
 
+
+}
 }
 
 void Bina_PrimaryGeneratorAction::RandomInit(int level )
@@ -447,6 +511,7 @@ void Bina_PrimaryGeneratorAction::open_pluto_file(){
 	if(npd_choice==0) sprintf(file_path,"data/output_elast_dp.txt");
 	if(npd_choice==2) sprintf(file_path,"data/output_break_dp.txt");
 	if(npd_choice==3) sprintf(file_path,"data/output_break_dd.txt");	
+	if(npd_choice==4) sprintf(file_path,"data/output_break_dd_ppnn.txt");		
 	file_Pluto_generator.open(file_path,std::ios::in);
 	if( !file_Pluto_generator.is_open()){
 		G4cout<<"\n\n MyLog: Plik nie zostal otwarty\n";

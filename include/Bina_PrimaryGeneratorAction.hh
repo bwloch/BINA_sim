@@ -40,7 +40,7 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 //////////////////////////////
 // Generation Parameters
 //////////////////////////////
-    double bt1,bt2,bt3,t1,t2,t3,fi1,fi2,fi3;
+    double bt1,bt2,bt3,bt4,t1,t2,t3,t4,fi1,fi2,fi3,fi4;
     double bt1_mev,th,thl[70],ds[70],ay[70],ap1[70],ap2[70],t21,ap3[70];
     double sig[20][20][15][200],ayn[20][20][15][200],ayd[20][20][15][200],
 	  axx[20][20][15][200],ayy[20][20][15][200],axn[20][20][15][200],
@@ -57,38 +57,41 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
   public:
     void GeneratePrimaries(G4Event*);
 
-    inline static double* GetStartEnergy (double en1 = -1., double en2 = -1., double en3 = -1.)
+    inline static double* GetStartEnergy (double en1 = -1., double en2 = -1., double en3 = -1., double en4 = -1.)
     {
-      static double tes1[3];
+      static double tes1[4];
       if (en1 != -1.)
       {
         tes1[0] = en1;
 	tes1[1] = en2;
 	tes1[2] = en3;
+	tes1[3] = en4;
       }
       return tes1;
     };
 
-    inline static double* GetStartAngleTheta (double ang1 = -1., double ang2 = -1., double ang3 = -1.)
+    inline static double* GetStartAngleTheta (double ang1 = -1., double ang2 = -1., double ang3 = -1., double ang4 = -1.)
     {
-      static double tes2[3];
+      static double tes2[4];
       if (ang1 != -1.)
       {
         tes2[0] = ang1;
 	tes2[1] = ang2;
 	tes2[2] = ang3;
+	tes2[3] = ang4;
       }
       return tes2;
     };
 
-    inline static double* GetStartAnglePhi (double ang1 = -1., double ang2 = -1., double ang3 = -1.)
+    inline static double* GetStartAnglePhi (double ang1 = -1., double ang2 = -1., double ang3 = -1., double ang4 = -1.)
     {
-      static double tes3[3];
+      static double tes3[4];
       if (ang1 != -1.)
       {
         tes3[0] = ang1;
 	tes3[1] = ang2;
 	tes3[2] = ang3;
+	tes3[3] = ang4;
       }
       return tes3;
     };
@@ -124,6 +127,7 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     G4ParticleGun* particleGun1;		//proton 1
     G4ParticleGun* particleGun2;		//proton 2
     G4ParticleGun* particleGun3;		//neutron
+    G4ParticleGun* particleGun4;		//neutron
     G4ParticleGun* event_cleaner_particle_gun;
     Bina_DetectorConstruction* myDetector;
 

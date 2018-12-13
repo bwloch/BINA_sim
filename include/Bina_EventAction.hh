@@ -13,20 +13,21 @@ class Bina_EventAction : public G4UserEventAction
 {
  private:
  std::vector <G4double> fX1vec;
-  G4double  fX1, fX2, fX3;	         // Coord. on MWPC
-  G4double  fY1, fY2, fY3;             // -||-
-  G4int    fP1Type,fP2Type,fP3Type;      // Kind of particle
-  G4int    fE1, fE2, fE3;             // Which E det
-  G4int    fdE1, fdE2, fdE3;           // Which dE det
+  G4double  fX1, fX2, fX3, fX4;	         // Coord. on MWPC
+  G4double  fY1, fY2, fY3, fY4;             // -||-
+  G4int    fP1Type,fP2Type,fP3Type, fP4Type;      // Kind of particle
+  G4int    fE1, fE2, fE3, fE4;             // Which E det
+  G4int    fdE1, fdE2, fdE3, fdE4;           // Which dE det
   G4int    fN;                   // number of particles in event
-  G4double fEn1, fEn2, fEn3;            // Energies from vert
-  G4double fEd1, fEd2, fEd3;            // Energies dep. in E
-  G4double fTh1, fTh2, fTh3;            // Theta angles of particles (vert)
-  G4double fPhi1, fPhi2, fPhi3;          // Phi angles of particles (vert)
+  G4double fEn1, fEn2, fEn3, fEn4;            // Energies from vert
+  G4double fEd1, fEd2, fEd3, fEd4;            // Energies dep. in E
+  G4double fTh1, fTh2, fTh3, fTh4;            // Theta angles of particles (vert)
+  G4double fPhi1, fPhi2, fPhi3, fPhi4;          // Phi angles of particles (vert)
   G4double  fXv, fYv, fZv;			// Vertex position
   G4int fFlagMWPC1, fFlagE1,fFlagdE1;
    G4int fFlagMWPC2, fFlagE2,fFlagdE2;
     G4int fFlagMWPC3, fFlagE3,fFlagdE3;
+        G4int fFlagMWPC4, fFlagE4,fFlagdE4;
   G4int Part_num;
   
   

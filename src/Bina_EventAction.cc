@@ -134,7 +134,18 @@ analysisManager->FillNtupleIColumn(1,46,fFlagE3);
 analysisManager->FillNtupleIColumn(1,47,fFlagdE1);
 analysisManager->FillNtupleIColumn(1,48,fFlagdE2);
 analysisManager->FillNtupleIColumn(1,49,fFlagdE3);
-//analysisManager->FillNtupleDColumn(1,1,fEnergy);
+analysisManager->FillNtupleDColumn(1,50,fX4);
+analysisManager->FillNtupleDColumn(1,51,fY4);
+analysisManager->FillNtupleIColumn(1,52,fP4Type);
+analysisManager->FillNtupleIColumn(1,53,fE4);
+analysisManager->FillNtupleIColumn(1,54,fdE4);
+analysisManager->FillNtupleDColumn(1,55,fEn4);
+analysisManager->FillNtupleDColumn(1,56,fEd4);
+analysisManager->FillNtupleDColumn(1,57,fTh4);
+analysisManager->FillNtupleDColumn(1,58,fPhi4);
+analysisManager->FillNtupleIColumn(1,59,fFlagMWPC4);
+analysisManager->FillNtupleIColumn(1,60,fFlagE4);
+analysisManager->FillNtupleIColumn(1,61,fFlagdE4);
 analysisManager->AddNtupleRow(1);
 //G4cout<<" \n\t Myog: EventAction En1="<<fEn1<<" \t En2="<<fEn2<<"\t En1+En2="<<fEn1+fEn2<<G4endl;
 
@@ -203,6 +214,23 @@ if(pos_num==3){
 	fFlagE3=FlagE;
 	fFlagdE3=FlagdE;
 }
+
+if(pos_num==4){
+//neutron
+	fX4=X;
+	fY4=Y;
+	fTh4=Th;
+	fPhi4=phi;
+	fEn4=En;
+	fEd4=Ed;
+	fE4=E;
+	fdE4=dE;
+	fP4Type=3;
+	fFlagMWPC4=FlagMWPC;
+	fFlagE4=FlagE;
+	fFlagdE4=FlagdE;
+}
+
 fXv=Xv;
 fYv=Yv;
 fZv=Zv;
