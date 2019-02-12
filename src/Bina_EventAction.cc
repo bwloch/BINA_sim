@@ -26,7 +26,8 @@ void Bina_EventAction::BeginOfEventAction(const G4Event* evt)
 {
 
 //Initialization
-Part_num=0;
+Part_num_n=0;
+Part_num_p=0;
 fN=0;
 fX1=-999;
 fY1=-999;
@@ -67,6 +68,10 @@ fFlagdE2=0;
 fFlagMWPC3=0;
 fFlagE3=0;
 fFlagdE3=0;
+fEddE1=-999;
+fEddE2=-999;
+fEddE3=-999;
+fEddE4=-999;
 fX1vec.clear();
 //G4cout<<"\n\t MyLog: BeginOfEventAction";
 
@@ -146,24 +151,55 @@ analysisManager->FillNtupleDColumn(1,58,fPhi4);
 analysisManager->FillNtupleIColumn(1,59,fFlagMWPC4);
 analysisManager->FillNtupleIColumn(1,60,fFlagE4);
 analysisManager->FillNtupleIColumn(1,61,fFlagdE4);
+analysisManager->FillNtupleDColumn(1,62,fEddE1);
+analysisManager->FillNtupleDColumn(1,63,fEddE2);
+analysisManager->FillNtupleDColumn(1,64,fEddE3);
+analysisManager->FillNtupleDColumn(1,65,fEddE4);
 analysisManager->AddNtupleRow(1);
 //G4cout<<" \n\t Myog: EventAction En1="<<fEn1<<" \t En2="<<fEn2<<"\t En1+En2="<<fEn1+fEn2<<G4endl;
 
 }
 
-void Bina_EventAction::AddHits(G4int Ptype, G4double X, G4double Y, G4double Th, G4double phi, G4double En, G4double Ed, G4double E, G4double dE, G4double Xv, G4double Yv, G4double Zv, G4int FlagMWPC, G4int FlagE, G4int FlagdE){
+void Bina_EventAction::AddHits(G4int Ptype, G4double X, G4double Y, G4double Th, G4double phi, G4double En, G4double Ed, G4double EddE, G4double E, G4double dE, G4double Xv, G4double Yv, G4double Zv, G4int FlagMWPC, G4int FlagE, G4int FlagdE){
 G4int pos_num=0;
 
 //Checking particle type and its position in FBEvent structure
 if(Ptype==2){//Proton
-	if(Part_num==0) {
+
+	if(Part_num_p==0) {
 		pos_num=1;
-		Part_num++;
+		fP1Type=1;
+		Part_num_p++;
 		}
-	else pos_num=2;
+	else {
+	pos_num=2;
+	fP2Type=1;
 	}
-if(Ptype==1) pos_num=3; //Neutron
-if(Ptype==3) pos_num=2; //Deuteron
+}
+if(Ptype==1) { //Neutron
+	if(Part_num_n==0) {
+		pos_num=3;
+		fP3Type=3;
+		Part_num_n++;
+	}
+	else {
+		pos_num=4;
+		fP4Type=3;
+	} 
+
+} 
+if(Ptype==3) {//Deuteron
+pos_num=2;
+fP2Type=2;
+}
+if(Ptype==4) {//triton
+pos_num=2;
+fP2Type=4;
+}
+if(Ptype==5) {//helium3
+pos_num=2;
+fP2Type=5;
+}
 
 //Filling variables
 if(pos_num==1){
@@ -177,15 +213,16 @@ if(pos_num==1){
 	fEd1=Ed;
 	fE1=E;
 	fdE1=dE;
-	fP1Type=1;
 	fFlagMWPC1=FlagMWPC;
 	fFlagE1=FlagE;
 	fFlagdE1=FlagdE;
+	fEddE1=EddE;
 
 }
 if(pos_num==2){
 
 //deuteron or proton
+//or he3, t
 	fX2=X;
 	fY2=Y;
 	fTh2=Th;
@@ -194,10 +231,11 @@ if(pos_num==2){
 	fEd2=Ed;
 	fE2=E;
 	fdE2=dE;
-	fP2Type=2;
+
 	fFlagMWPC2=FlagMWPC;
 	fFlagE2=FlagE;
 	fFlagdE2=FlagdE;
+	fEddE2=EddE;
 }
 if(pos_num==3){
 //neutron
@@ -209,10 +247,11 @@ if(pos_num==3){
 	fEd3=Ed;
 	fE3=E;
 	fdE3=dE;
-	fP3Type=3;
+
 	fFlagMWPC3=FlagMWPC;
 	fFlagE3=FlagE;
 	fFlagdE3=FlagdE;
+	fEddE3=EddE;
 }
 
 if(pos_num==4){
@@ -225,10 +264,11 @@ if(pos_num==4){
 	fEd4=Ed;
 	fE4=E;
 	fdE4=dE;
-	fP4Type=3;
+
 	fFlagMWPC4=FlagMWPC;
 	fFlagE4=FlagE;
 	fFlagdE4=FlagdE;
+	fEddE4=EddE;
 }
 
 fXv=Xv;

@@ -78,6 +78,10 @@ analysisManager->CreateNtupleDColumn(1,"fPhi4");
 analysisManager->CreateNtupleIColumn(1,"fFlagMWPC4");
 analysisManager->CreateNtupleIColumn(1,"fFlagE4");
 analysisManager->CreateNtupleIColumn(1,"fFlagdE4");
+analysisManager->CreateNtupleDColumn(1,"fEddE1");
+analysisManager->CreateNtupleDColumn(1,"fEddE2");
+analysisManager->CreateNtupleDColumn(1,"fEddE3");
+analysisManager->CreateNtupleDColumn(1,"fEddE4");
 analysisManager->FinishNtuple();
 }
 }

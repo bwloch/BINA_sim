@@ -136,44 +136,23 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     double RandomFlat (double, double =0, double =1);	// flat
     void Pos(void);				//generate vertex position
 
-    double* elastic(double*);
-    double* ugbreak(double*);
-    double* ugelast(double*);
-    double* upunif(double*);
-
-    void ugelast_read(void);
     void read_part_momentum(double*);
+    void read_part_momentum4(double*);
     void open_pluto_file();
-    void break_read(void);
 
 
-    double gelkin(double,double*,double*);  // elastic kinematics
-    double rinterp(double [5][5][5][5], double, double, double, double);
-    double cspol(double,double,double,double,double);
-    double dpb_kin3(const int,double,double*,double,double*,double*,double*);
-    double *vector(long,long);
-    void free_vector(double*,long,long);
-    void carsph(double*,double*,double*,double*);
-    void splint(double*,double*,double*,int,double,double*);
-    void spline(double*,double*,int,double,double,double*);
-    void spline4(double*,int,int,int,int,double*);
-    void splint4(double*,double*,int,int,int,int,double,double,double,double,double*);
+
+
 
     inline double P(double EE,double MP){return sqrt(EE*EE - MP*MP);} 	//P_relatywist. [MeV] (E_relatywist. [MeV] )
     inline double E(double PP,double MP){return sqrt(PP*PP + MP*MP);}  	//E_relatywist. [MeV] (P_relatywist. [MeV] )
 
-    // transformation from s1 do s
-    inline double Z(double xx1,double ,double zz1,double alfa) {return (zz1*cos(alfa) - xx1*sin(alfa));}
-    inline double X(double xx1,double ,double zz1,double alfa) {return (zz1*sin(alfa) + xx1*cos(alfa));}
-    inline double Y(double ,double yy1,double ,double ) {return yy1;}
+
     double momentum[9]; 		// table whit track momentum
     double vertex[3];			// table whith vertex position
     double p_mass, d_mass, n_mass;	// pointer to particle mass
 
-    double x1a[4],x2a[4],x3a[4],x4a[4];
-    double x1a_r[5],x2a_r[5],x3a_r[5],x4a_r[5];
-    double ya_r[5][5][5][5], yax_r[5][5][5][5];
-    double yay_r[5][5][5][5],yaxx_r[5][5][5][5],yaxy_r[5][5][5][5],yayy_r[5][5][5][5];
+
    // G4RandGauss* GaussDist;//[2];		//table with diferent generators with gaussian distribution
    // RandGaurs *GaD = new RandGauss[2];
     CLHEP::RandGauss* GaussDist[2];

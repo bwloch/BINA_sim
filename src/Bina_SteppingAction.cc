@@ -240,7 +240,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
     //TEST
     //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     position = Bina_PrimaryGeneratorAction::GetStartPosition();
-    if(tab[1]>0) fEventAction->AddHits(tab[1],tab[5],tab[6],tab3[5],tab3[4],tab3[3],tab[11],tab[12],tab[8],position[0],position[1],position[2],tab[2],tab[4],tab[3]);
+    if(tab[1]>0) fEventAction->AddHits(tab[1],tab[5],tab[6],tab3[5],tab3[4],tab3[3],tab[11],tab[7],tab[12],tab[8],position[0],position[1],position[2],tab[2],tab[4],tab[3]);
     for(int licz=0;licz<25;licz++) {
     	tab[licz]=-999;
     	tab2[licz]=-999;
@@ -259,6 +259,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
   if (ParticleType == G4Neutron::NeutronDefinition()) {tab[1] = 1.;}//test[1] = 1.;}		//neutron
   else if (ParticleType == G4Deuteron::DeuteronDefinition()) {tab[1] = 3.;}//test[1] = 3.;}	//deuteron
   else if (ParticleType == G4Proton::ProtonDefinition()) {tab[1] = 2.;}//test[1] = 2.;}		//proton
+  else if (ParticleType == G4Triton::TritonDefinition()) {tab[1] = 4.;}//test[1] = 2.;}		//proton
   else tab[1] = 0.;
   }
 
@@ -286,7 +287,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
 	else if (tab[1]==3) i=1;
 	else G4cout << "Unknown particle in StepingAction ... tab[1] = "<<tab[1]<<G4endl;
       }
-      else if (npd_choice == 2 || npd_choice == 3 || npd_choice == 4 )
+      else if (npd_choice == 2 || npd_choice == 3 || npd_choice == 4 || npd_choice == 5 )
       {
         if      (fabs(energy[0] - startEnergy)<0.001) i = 0;
 	else if (fabs(energy[1] - startEnergy)<0.001) i = 1;
