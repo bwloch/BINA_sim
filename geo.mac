@@ -6,22 +6,22 @@
 ##                               ##
 ###################################
 #modifications awilczek
-/param/npd_choice      -1
+/param/npd_choice      4
 /param/bfwhmx          1.        	# in mm!
 /param/bfwhmy          1.		# in mm!
-/param/bt              120 MeV      #tylko MeV !!
+/param/bt              160. MeV      #tylko MeV !!
 /param/pz              0.
 /param/pzz             0.
 /param/themin          19.5 deg
 /param/themax          20.5 deg
-/param/the2min         19.5 deg
-/param/the2max         20.5 deg
+/param/the2min         24.5 deg
+/param/the2max         23.5 deg
 #/param/themin          5.5 deg
 #/param/themax          26. deg
 #/param/the2min         5.5 deg
 #/param/the2max         26. deg
 /param/phimin          0. deg
-/param/phimax          360. deg
+/param/phimax          180. deg
 #phimax=180. deg dla breakupu
 #zrob jeszcze parametr dla zakresu 
 #/param/update

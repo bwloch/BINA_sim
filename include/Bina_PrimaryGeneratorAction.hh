@@ -122,7 +122,7 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     
 
   private:
-    G4LorentzVector v4;
+    G4LorentzVector v1,v2,v3,v4;
     std::ifstream file_Pluto_generator;
     G4ParticleGun* particleGun1;		//proton 1
     G4ParticleGun* particleGun2;		//proton 2

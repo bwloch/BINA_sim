@@ -291,6 +291,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
         if      (fabs(energy[0] - startEnergy)<0.001) i = 0;
 	else if (fabs(energy[1] - startEnergy)<0.001) i = 1;
         else if (fabs(energy[2] - startEnergy)<0.001) i = 2;
+        else if (fabs(energy[3] - startEnergy)<0.001) i = 3;
 	else G4cout << std::setw(24) <<"error -> " <<startEnergy<<G4endl;
       }
       else G4cout << std::setw(14) <<"error ***"<<G4endl;
