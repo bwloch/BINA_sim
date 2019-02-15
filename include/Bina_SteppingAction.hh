@@ -4,15 +4,15 @@
 #include "globals.hh"
 #include "G4UserSteppingAction.hh"
 class Bina_PhysicsMessenger;
-#include "Bina_PhysicsList.hh"
 class G4Step;
 class G4Track;
 class Bina_EventAction;
+class Bina_PrimaryGeneratorAction;
 
 class Bina_SteppingAction : public G4UserSteppingAction
 {
   public:
-    Bina_SteppingAction(Bina_PhysicsList*, Bina_EventAction* );
+    Bina_SteppingAction(Bina_EventAction*, Bina_PrimaryGeneratorAction* );
     virtual ~Bina_SteppingAction();
     virtual void UserSteppingAction(const G4Step*);
     G4Track* fTrack;
@@ -21,8 +21,8 @@ class Bina_SteppingAction : public G4UserSteppingAction
     int file_types;
   private:
   double *energy, *theta, *phi ,*position;
-  Bina_PhysicsList* myPhysicsList;
   Bina_EventAction* fEventAction;
+  Bina_PrimaryGeneratorAction* fPrimaryGeneratorAction;
 };
 
 #endif

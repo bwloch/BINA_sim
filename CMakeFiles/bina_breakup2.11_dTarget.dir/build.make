@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/menorzinho/GEANT4/Sim/symulacja_Bogus
+CMAKE_SOURCE_DIR = /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/menorzinho/GEANT4/Sim/symulacja_Bogus
+CMAKE_BINARY_DIR = /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim
 
 # Include any dependencies generated for this target.
 include CMakeFiles/bina_breakup2.11_dTarget.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.o: CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
 CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.o: bina_breakup2.11_dTarget.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.o -c /home/menorzinho/GEANT4/Sim/symulacja_Bogus/bina_breakup2.11_dTarget.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.o -c /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/bina_breakup2.11_dTarget.cc
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/menorzinho/GEANT4/Sim/symulacja_Bogus/bina_breakup2.11_dTarget.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/bina_breakup2.11_dTarget.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.i
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/menorzinho/GEANT4/Sim/symulacja_Bogus/bina_breakup2.11_dTarget.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/bina_breakup2.11_dTarget.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.s
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.o.requires:
 
@@ -81,18 +81,42 @@ CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.o.provides: 
 CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.o.provides.build: CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.o
 
 
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o: CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o: src/Bina_ActionInitialization.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o -c /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_ActionInitialization.cc
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_ActionInitialization.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.i
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_ActionInitialization.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.s
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o.requires:
+
+.PHONY : CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o.requires
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o.provides: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o.requires
+	$(MAKE) -f CMakeFiles/bina_breakup2.11_dTarget.dir/build.make CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o.provides.build
+.PHONY : CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o.provides
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o.provides.build: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o
+
+
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.o: CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.o: src/Bina_DetectorConstruction.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.o -c /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_DetectorConstruction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.o -c /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_DetectorConstruction.cc
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_DetectorConstruction.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_DetectorConstruction.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.i
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_DetectorConstruction.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_DetectorConstruction.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.s
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.o.requires:
 
@@ -107,16 +131,16 @@ CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.o.provi
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.o: CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.o: src/Bina_DetectorMessenger.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.o -c /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_DetectorMessenger.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.o -c /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_DetectorMessenger.cc
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_DetectorMessenger.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_DetectorMessenger.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.i
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_DetectorMessenger.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_DetectorMessenger.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.s
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.o.requires:
 
@@ -131,16 +155,16 @@ CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.o.provides
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.o: CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.o: src/Bina_EventAction.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.o -c /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_EventAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.o -c /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_EventAction.cc
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_EventAction.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_EventAction.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.i
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_EventAction.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_EventAction.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.s
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.o.requires:
 
@@ -155,16 +179,16 @@ CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.o.provides.build
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.o: CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.o: src/Bina_Graniastoslupy.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.o -c /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_Graniastoslupy.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.o -c /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_Graniastoslupy.cc
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_Graniastoslupy.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_Graniastoslupy.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.i
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_Graniastoslupy.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_Graniastoslupy.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.s
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.o.requires:
 
@@ -179,16 +203,16 @@ CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Graniastoslupy.cc.o.provides.bu
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.o: CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.o: src/Bina_Obroty.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.o -c /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_Obroty.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.o -c /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_Obroty.cc
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_Obroty.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_Obroty.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.i
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_Obroty.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_Obroty.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.s
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.o.requires:
 
@@ -203,16 +227,16 @@ CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obroty.cc.o.provides.build: CMa
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.o: CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.o: src/Bina_PhysicsList.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.o -c /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_PhysicsList.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.o -c /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_PhysicsList.cc
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_PhysicsList.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_PhysicsList.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.i
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_PhysicsList.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_PhysicsList.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.s
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.o.requires:
 
@@ -227,16 +251,16 @@ CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.o.provides.build
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.o: CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.o: src/Bina_PhysicsMessenger.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.o -c /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_PhysicsMessenger.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.o -c /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_PhysicsMessenger.cc
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_PhysicsMessenger.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_PhysicsMessenger.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.i
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_PhysicsMessenger.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_PhysicsMessenger.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.s
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.o.requires:
 
@@ -251,16 +275,16 @@ CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.o.provides.
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.o: CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.o: src/Bina_PrimaryGeneratorAction.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.o -c /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_PrimaryGeneratorAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.o -c /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_PrimaryGeneratorAction.cc
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_PrimaryGeneratorAction.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_PrimaryGeneratorAction.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.i
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_PrimaryGeneratorAction.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_PrimaryGeneratorAction.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.s
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.o.requires:
 
@@ -273,18 +297,42 @@ CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.o.pro
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.o.provides.build: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.o
 
 
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o: CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o: src/Bina_RunAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o -c /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_RunAction.cc
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_RunAction.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.i
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_RunAction.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.s
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o.requires:
+
+.PHONY : CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o.requires
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o.provides: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o.requires
+	$(MAKE) -f CMakeFiles/bina_breakup2.11_dTarget.dir/build.make CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o.provides.build
+.PHONY : CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o.provides
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o.provides.build: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o
+
+
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.o: CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.o: src/Bina_SteppingAction.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.o -c /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_SteppingAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.o -c /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_SteppingAction.cc
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_SteppingAction.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_SteppingAction.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.i
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_SteppingAction.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_SteppingAction.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.s
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.o.requires:
 
@@ -299,16 +347,16 @@ CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.o.provides.bu
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.o: CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.o: src/Bina_VisManager.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.o -c /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_VisManager.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.o -c /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_VisManager.cc
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_VisManager.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_VisManager.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.i
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/menorzinho/GEANT4/Sim/symulacja_Bogus/src/Bina_VisManager.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/Bina_VisManager.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.s
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.o.requires:
 
@@ -321,9 +369,34 @@ CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.o.provides: CMake
 CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.o.provides.build: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.o
 
 
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o: CMakeFiles/bina_breakup2.11_dTarget.dir/flags.make
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o: src/MyFileReader.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o -c /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/MyFileReader.cc
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/MyFileReader.cc > CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.i
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/src/MyFileReader.cc -o CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.s
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o.requires:
+
+.PHONY : CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o.requires
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o.provides: CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o.requires
+	$(MAKE) -f CMakeFiles/bina_breakup2.11_dTarget.dir/build.make CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o.provides.build
+.PHONY : CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o.provides
+
+CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o.provides.build: CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o
+
+
 # Object files for target bina_breakup2.11_dTarget
 bina_breakup2_11_dTarget_OBJECTS = \
 "CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.o" \
+"CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o" \
 "CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.o" \
 "CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.o" \
 "CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.o" \
@@ -332,13 +405,16 @@ bina_breakup2_11_dTarget_OBJECTS = \
 "CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.o" \
 "CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.o" \
 "CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.o" \
+"CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o" \
 "CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.o" \
-"CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.o"
+"CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.o" \
+"CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o"
 
 # External object files for target bina_breakup2.11_dTarget
 bina_breakup2_11_dTarget_EXTERNAL_OBJECTS =
 
 bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.o
+bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o
 bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.o
 bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.o
 bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.o
@@ -347,32 +423,34 @@ bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_Obrot
 bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.o
 bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.o
 bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.o
+bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o
 bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.o
 bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.o
+bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o
 bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/build.make
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4Tree.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4GMocren.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4visHepRep.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4RayTracer.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4VRML.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4OpenGL.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4OpenInventor.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4interfaces.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4persistency.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4error_propagation.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4readout.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4physicslists.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4parmodels.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4FR.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4Tree.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4GMocren.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4visHepRep.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4RayTracer.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4VRML.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4OpenGL.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4OpenInventor.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4interfaces.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4persistency.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4error_propagation.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4readout.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4physicslists.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4parmodels.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4FR.so
 bina_breakup2.11_dTarget: /usr/lib/x86_64-linux-gnu/libQtOpenGL.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4gl2ps.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4vis_management.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4modeling.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4gl2ps.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4vis_management.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4modeling.so
 bina_breakup2.11_dTarget: /usr/lib/x86_64-linux-gnu/libQtGui.so
 bina_breakup2.11_dTarget: /usr/lib/x86_64-linux-gnu/libQtCore.so
 bina_breakup2.11_dTarget: /usr/local/lib/libCoin.so
-bina_breakup2.11_dTarget: /usr/lib/x86_64-linux-gnu/libGLU.so
 bina_breakup2.11_dTarget: /usr/lib/x86_64-linux-gnu/libGL.so
+bina_breakup2.11_dTarget: /usr/lib/x86_64-linux-gnu/libGLU.so
 bina_breakup2.11_dTarget: /usr/local/lib/libSoXt.so
 bina_breakup2.11_dTarget: /usr/lib/x86_64-linux-gnu/libXm.so
 bina_breakup2.11_dTarget: /usr/lib/x86_64-linux-gnu/libSM.so
@@ -382,24 +460,24 @@ bina_breakup2.11_dTarget: /usr/lib/x86_64-linux-gnu/libXext.so
 bina_breakup2.11_dTarget: /usr/lib/x86_64-linux-gnu/libXt.so
 bina_breakup2.11_dTarget: /usr/lib/x86_64-linux-gnu/libXmu.so
 bina_breakup2.11_dTarget: /usr/lib/x86_64-linux-gnu/libXpm.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4run.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4event.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4tracking.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4processes.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4analysis.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4zlib.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4run.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4event.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4tracking.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4processes.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4analysis.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4zlib.so
 bina_breakup2.11_dTarget: /usr/lib/x86_64-linux-gnu/libexpat.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4digits_hits.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4track.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4particles.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4geometry.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4materials.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4graphics_reps.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4intercoms.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4global.so
-bina_breakup2.11_dTarget: /home/menorzinho/GEANT4/geant4-install/lib/libG4clhep.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4digits_hits.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4track.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4particles.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4geometry.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4materials.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4graphics_reps.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4intercoms.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4global.so
+bina_breakup2.11_dTarget: /home/bwloch/GEANT4/geant4-install/lib/libG4clhep.so
 bina_breakup2.11_dTarget: CMakeFiles/bina_breakup2.11_dTarget.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable bina_breakup2.11_dTarget"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable bina_breakup2.11_dTarget"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/bina_breakup2.11_dTarget.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -408,6 +486,7 @@ CMakeFiles/bina_breakup2.11_dTarget.dir/build: bina_breakup2.11_dTarget
 .PHONY : CMakeFiles/bina_breakup2.11_dTarget.dir/build
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/requires: CMakeFiles/bina_breakup2.11_dTarget.dir/bina_breakup2.11_dTarget.cc.o.requires
+CMakeFiles/bina_breakup2.11_dTarget.dir/requires: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_ActionInitialization.cc.o.requires
 CMakeFiles/bina_breakup2.11_dTarget.dir/requires: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorConstruction.cc.o.requires
 CMakeFiles/bina_breakup2.11_dTarget.dir/requires: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_DetectorMessenger.cc.o.requires
 CMakeFiles/bina_breakup2.11_dTarget.dir/requires: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_EventAction.cc.o.requires
@@ -416,8 +495,10 @@ CMakeFiles/bina_breakup2.11_dTarget.dir/requires: CMakeFiles/bina_breakup2.11_dT
 CMakeFiles/bina_breakup2.11_dTarget.dir/requires: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsList.cc.o.requires
 CMakeFiles/bina_breakup2.11_dTarget.dir/requires: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PhysicsMessenger.cc.o.requires
 CMakeFiles/bina_breakup2.11_dTarget.dir/requires: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_PrimaryGeneratorAction.cc.o.requires
+CMakeFiles/bina_breakup2.11_dTarget.dir/requires: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_RunAction.cc.o.requires
 CMakeFiles/bina_breakup2.11_dTarget.dir/requires: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_SteppingAction.cc.o.requires
 CMakeFiles/bina_breakup2.11_dTarget.dir/requires: CMakeFiles/bina_breakup2.11_dTarget.dir/src/Bina_VisManager.cc.o.requires
+CMakeFiles/bina_breakup2.11_dTarget.dir/requires: CMakeFiles/bina_breakup2.11_dTarget.dir/src/MyFileReader.cc.o.requires
 
 .PHONY : CMakeFiles/bina_breakup2.11_dTarget.dir/requires
 
@@ -426,6 +507,6 @@ CMakeFiles/bina_breakup2.11_dTarget.dir/clean:
 .PHONY : CMakeFiles/bina_breakup2.11_dTarget.dir/clean
 
 CMakeFiles/bina_breakup2.11_dTarget.dir/depend:
-	cd /home/menorzinho/GEANT4/Sim/symulacja_Bogus && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/menorzinho/GEANT4/Sim/symulacja_Bogus /home/menorzinho/GEANT4/Sim/symulacja_Bogus /home/menorzinho/GEANT4/Sim/symulacja_Bogus /home/menorzinho/GEANT4/Sim/symulacja_Bogus /home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles/bina_breakup2.11_dTarget.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles/bina_breakup2.11_dTarget.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/bina_breakup2.11_dTarget.dir/depend
 

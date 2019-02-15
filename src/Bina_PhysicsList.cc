@@ -52,10 +52,18 @@
 #include "G4RadioactiveDecayPhysics.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+ Bina_PhysicsList* Bina_PhysicsList::fgInstance = 0;
+ 
+ Bina_PhysicsList* Bina_PhysicsList::Instance()
+{
+  return fgInstance;
+}
  
 Bina_PhysicsList::Bina_PhysicsList()
 :G4VModularPhysicsList()
 {
+fgInstance = this;
   physicsMessenger = new Bina_PhysicsMessenger(this);
   //add new units
   //
@@ -135,6 +143,7 @@ void Bina_PhysicsList::RegisterHadrons(G4String option) {
 
 Bina_PhysicsList::~Bina_PhysicsList()
 {
+fgInstance = 0;
 delete physicsMessenger;
  }
 

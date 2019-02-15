@@ -29,7 +29,7 @@ class Bina_DetectorConstruction : public G4VUserDetectorConstruction
 
      Bina_DetectorConstruction();
     ~Bina_DetectorConstruction();
-
+	static Bina_DetectorConstruction* Instance();
   public:
 
      G4VPhysicalVolume* Construct();
@@ -375,6 +375,7 @@ private:
      G4VPhysicalVolume*  wallf_phs[20];  
      
      Bina_DetectorMessenger* detectorMessenger;  // pointer to the Messenger
+     static Bina_DetectorConstruction* fgInstance;
 };
 #endif
 

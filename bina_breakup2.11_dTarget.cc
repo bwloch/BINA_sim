@@ -1,11 +1,9 @@
 #include "Bina_DetectorConstruction.hh"
 #include "Bina_PhysicsList.hh"
-#include "Bina_PrimaryGeneratorAction.hh"
-#include "Bina_EventAction.hh"
-#include "Bina_SteppingAction.hh"
-#include "Bina_RunAction.hh"
+#include "Bina_ActionInitialization.hh"
 
 #include "G4RunManager.hh"
+#include "G4MTRunManager.hh"
 #include "G4UImanager.hh"
 #include "G4UIterminal.hh"
 #include "G4UItcsh.hh"
@@ -24,15 +22,24 @@
 int main(int argc,char** argv) 
 {
 
+#ifdef G4MULTITHREADEDd
+G4cout<<"**************** Multi Thread *************"<<G4endl;
+ G4MTRunManager* runManager = new G4MTRunManager;     
+// runManager->SetNumberOfThreads(G4Threading::G4GetNumberOfCores()); 
+ runManager->SetNumberOfThreads(2); 
+#else
+G4cout<<"**************** Single Thread *************"<<G4endl;
+     G4RunManager* runManager = new G4RunManager; 
+#endif
 
 
  Bina_DetectorConstruction* Bina_detector = new Bina_DetectorConstruction;
  Bina_PhysicsList* Bina_physics=new Bina_PhysicsList;
- G4RunManager * runManager = new G4RunManager;
+ //G4RunManager * runManager = new G4RunManager;
 
  runManager->SetUserInitialization(Bina_detector);
  runManager->SetUserInitialization(Bina_physics);
-
+runManager->SetUserInitialization(new Bina_ActionInitialization());
  if(argc<4)
  {
   G4String command = "/control/execute ";
@@ -52,13 +59,8 @@ int main(int argc,char** argv)
   G4VisManager* visManager = new Bina_VisManager;
   visManager->Initialize();
 #endif
-Bina_EventAction* EvnAct = new Bina_EventAction;
 
-  // UserAction classes
-  runManager->SetUserAction(new Bina_PrimaryGeneratorAction(Bina_detector));
-  runManager->SetUserAction(EvnAct);
-  runManager->SetUserAction(new Bina_SteppingAction(Bina_physics,EvnAct));
-runManager->SetUserAction(new Bina_RunAction(EvnAct));
+
 
   //Initialize G4 kernel
   runManager->Initialize();

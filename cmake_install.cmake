@@ -1,4 +1,4 @@
-# Install script for directory: /home/menorzinho/GEANT4/Sim/symulacja_Bogus
+# Install script for directory: /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,12 +44,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/bina_breakup2.11_dTarget"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/menorzinho/GEANT4/Sim/symulacja_Bogus/bina_breakup2.11_dTarget")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/bina_breakup2.11_dTarget")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/bina_breakup2.11_dTarget" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/bina_breakup2.11_dTarget")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/bina_breakup2.11_dTarget"
-         OLD_RPATH "/home/menorzinho/GEANT4/geant4-install/lib:/usr/local/lib:"
+         OLD_RPATH "/home/bwloch/GEANT4/geant4-install/lib:/usr/local/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/bina_breakup2.11_dTarget")
@@ -65,5 +65,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/menorzinho/GEANT4/Sim/symulacja_Bogus/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

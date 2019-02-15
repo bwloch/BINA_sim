@@ -13,6 +13,7 @@
 //#include "Ranlux64Engine.h"
 #include <cmath>
 
+
 #include <fstream>
 #ifndef min
 #define min(x,y) ((x) < (y) ? (x) : (y))
@@ -21,6 +22,9 @@
 #define max(x,y) ((x) > (y) ? (x) : (y))
 #endif
 #include <iostream>
+#include "G4AutoLock.hh"
+namespace { G4Mutex Bina_PrimGenMutex = G4MUTEX_INITIALIZER; }
+MyFileReader* Bina_PrimaryGeneratorAction::fileReader = 0;
 
 //fstream filell;
 //int chooser=0;
@@ -32,37 +36,38 @@ double csilocmax=0;
   double offs[4] = {5.0, 5.0, 0.0, 0.0};
 
 
-Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstruction* myDC)
-  : myDetector(myDC)
+Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction()
 {
   #include "Bina_Detector.cfg"
   
   
-  generator_min=myDC->GetKinematicsMin();
-  generator_max=myDC->GetKinematicsMax();
-  npd_choice = myDC->GetNpdChoice(); 
-  icros=myDC->GetNeumann();
-  bfwhmx = myDC ->GetBfwhmX();    
-  bfwhmy = myDC->GetBfwhmY();   
-  bt = myDC->GetBtEnergy();
-  pz = myDC->GetPz() ;
-  pzz = myDC->GetPzz() ;
-  themin = myDC->GetThetaMin()*180/M_PI; 
-  themax = myDC->GetThetaMax()*180/M_PI; 
-  themin2 = myDC->GetTheta2Min()*180/M_PI ; 
-  themax2 = myDC->GetTheta2Max()*180/M_PI ;
-  fimin = myDC->GetPhiMin()*180/M_PI ;
-  fimax = myDC->GetPhiMax()*180/M_PI ; G4cout<<"\n";
-  thigh = myDC->GetTargetHigh();
-  tXplace = myDC->GetTargetXplace();
-  tYplace = myDC->GetTargetYplace();
-  tZplace = myDC->GetTargetZplace();
+  static Bina_DetectorConstruction* myDec = Bina_DetectorConstruction::Instance();
+            
+  generator_min=myDec->GetKinematicsMin();
+  generator_max=myDec->GetKinematicsMax();
+  npd_choice = myDec->GetNpdChoice(); 
+  icros=myDec->GetNeumann();
+  bfwhmx = myDec ->GetBfwhmX();    
+  bfwhmy = myDec->GetBfwhmY();   
+  bt = myDec->GetBtEnergy();
+  pz = myDec->GetPz() ;
+  pzz = myDec->GetPzz() ;
+  themin = myDec->GetThetaMin()*180/M_PI; 
+  themax = myDec->GetThetaMax()*180/M_PI; 
+  themin2 = myDec->GetTheta2Min()*180/M_PI ; 
+  themax2 = myDec->GetTheta2Max()*180/M_PI ;
+  fimin = myDec->GetPhiMin()*180/M_PI ;
+  fimax = myDec->GetPhiMax()*180/M_PI ; G4cout<<"\n";
+  thigh = myDec->GetTargetHigh();
+  tXplace = myDec->GetTargetXplace();
+  tYplace = myDec->GetTargetYplace();
+  tZplace = myDec->GetTargetZplace();
   int n_particle = 1;
   bt1 = 0.;		bt2 = 0.;		bt3 = 0.; bt4=0.;
   t1  = 0.;		t2  = 0.;		t3  = 0.; t4=0.;
   fi1 = 0.;             fi2 = 0.;		fi3 = 0.; fi4=0.;
   bt /=1000.;
-
+FileName="";
   RandomInit();
 
 //  set particles mass
@@ -97,7 +102,7 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
   }
   else if (npd_choice == 0)
   {	
-
+	FileName="data/output_elast_dp.txt";
     particleGun1 = new G4ParticleGun(n_particle);
     particleGun2 = new G4ParticleGun(n_particle);
     event_cleaner_particle_gun = new G4ParticleGun(n_particle);
@@ -129,6 +134,7 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
   }
   else if (npd_choice == 2)
   {
+	FileName="data/output_break_dp.txt";
       event_cleaner_particle_gun = new G4ParticleGun(n_particle);
     particleGun1 = new G4ParticleGun(n_particle);
     particleGun2 = new G4ParticleGun(n_particle);
@@ -149,6 +155,7 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
   }
     else if (npd_choice == 3)
   {
+  FileName="data/output_break_dd.txt";
       event_cleaner_particle_gun = new G4ParticleGun(n_particle);
     particleGun1 = new G4ParticleGun(n_particle);
     particleGun2 = new G4ParticleGun(n_particle);
@@ -170,7 +177,7 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
   }
   else if(npd_choice == 4)
   {
-
+	FileName="data/output_break_dd_ppnn.txt";
     event_cleaner_particle_gun = new G4ParticleGun(n_particle);
     particleGun1 = new G4ParticleGun(n_particle);
     particleGun2 = new G4ParticleGun(n_particle);
@@ -194,7 +201,7 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
   }
     else if(npd_choice == 5)
   {
-
+	FileName="data/output_break_pT.txt";
     event_cleaner_particle_gun = new G4ParticleGun(n_particle);
     particleGun1 = new G4ParticleGun(n_particle);
     particleGun2 = new G4ParticleGun(n_particle);
@@ -215,6 +222,9 @@ Bina_PrimaryGeneratorAction::Bina_PrimaryGeneratorAction(Bina_DetectorConstructi
     G4cout << "Error in configuration file geo.mac !!! Bad npd_choice = "<<npd_choice<<G4endl;
     exit(1);
   }
+  
+  G4AutoLock lock(&Bina_PrimGenMutex);
+  if( !fileReader ) fileReader = new MyFileReader( FileName ); 
 
 }
 
@@ -225,6 +235,8 @@ delete event_cleaner_particle_gun;
   if (npd_choice >= 0) delete particleGun2;
   if (npd_choice >=2 ) delete particleGun3;
   if (npd_choice>=4) delete particleGun4;
+    G4AutoLock lock(&Bina_PrimGenMutex);
+  if( fileReader ) { delete fileReader; fileReader = 0; }
 }
 
 void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
@@ -271,7 +283,7 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
       GetStartAngleTheta(t1*180./M_PI);
       GetStartAnglePhi(fi1*180./M_PI);
       GetStartPosition(vertex[0],vertex[1],vertex[2]);
-
+	
   }
   else if (npd_choice == 0)
   {
@@ -363,7 +375,7 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     
 
   }
-  else if(npd_choice == 2 || npd_choice == 3){
+  else if(npd_choice == 2){
   
   
 	Pos();
@@ -431,6 +443,67 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
       GetStartAngleTheta(t1*180./M_PI,t2*180./M_PI,t3*180./M_PI);
       GetStartAnglePhi(fi1*180./M_PI,fi2*180./M_PI,fi3*180./M_PI);
       GetStartPosition(vertex[0],vertex[1],vertex[2]);
+      
+  }
+   else if(npd_choice == 3){
+  
+  
+	Pos();
+	int Is_Neutron_Simulated=0;
+	
+/// Black Magic begin
+//generujemy dodatkowa czastke 
+//zeby zapewnic zapic wszystkich czastek w tym samym evencie
+// bo czastki zapisywane sa dopiero po rozpoczeciu symulacji kolejnej!!
+  	event_cleaner_particle_gun->SetParticleMomentumDirection(G4ThreeVector(0.0,0.0,-1.0));
+    	event_cleaner_particle_gun->SetParticleEnergy(0.0001*CLHEP::GeV);
+    	event_cleaner_particle_gun->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+    	event_cleaner_particle_gun->GeneratePrimaryVertex(anEvent);
+// Black Magic end
+  	
+  	//reading deuteron
+  	if(fileReader)
+  {
+    G4AutoLock lock(&Bina_PrimGenMutex);
+    v1 = fileReader->GetAnEvent();
+    v2 = fileReader->GetAnEvent();
+    v3 = fileReader->GetAnEvent();
+  }
+	//reading deuteron
+  	particleGun1->SetParticleMomentumDirection(v1);
+  	bt1=(v1.e()-v1.m());
+  	t1=v1.theta();
+  	fi1=v1.phi();
+  	particleGun1->SetParticleEnergy(bt1*CLHEP::GeV);
+  	particleGun1->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+  	particleGun1->GeneratePrimaryVertex(anEvent);
+  	//reading proton
+
+  	bt2=(v2.e()-v2.m());
+  	t2=v2.theta();
+  	fi2=v2.phi();
+  	particleGun2->SetParticleMomentumDirection(v2);
+  	particleGun2->SetParticleEnergy(bt2*CLHEP::GeV);
+  	particleGun2->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+  	particleGun2->GeneratePrimaryVertex(anEvent);
+  	if(Is_Neutron_Simulated==1){
+  	//reading neutron
+  	
+	  	bt3=(v3.e()-v3.m());
+	  	t3=v3.theta();
+	  	fi3=v3.phi();
+	  	particleGun3->SetParticleMomentumDirection(v3);
+	  	particleGun3->SetParticleEnergy(bt3*CLHEP::GeV);
+	  	particleGun3->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
+	  	particleGun3->GeneratePrimaryVertex(anEvent);
+	  
+  	}
+  	
+      GetStartEnergy(bt1*1000.,bt2*1000.,bt3*1000.);
+      GetStartAngleTheta(t1*180./M_PI,t2*180./M_PI,t3*180./M_PI);
+      GetStartAnglePhi(fi1*180./M_PI,fi2*180./M_PI,fi3*180./M_PI);
+      GetStartPosition(vertex[0],vertex[1],vertex[2]);
+      //G4cout<<"energy="<<bt1<<" theta1="<<t1<<" fi1="<<fi1<<"\n";
       
   }
   else if(npd_choice==4){

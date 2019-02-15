@@ -12,30 +12,20 @@
 #include <fstream>
 #include <iostream>
 #include "G4LorentzVector.hh"
-
-
+#include "MyFileReader.hh"
 
 class Bina_DetectorConstruction;
 class G4ParticleGun;
 class G4Event;
-//class G4RandGauss;
+class MyFileReader;
+
+
 class Zmienne;
-/*class RandFlat;
-class Ranlux64Engine: public HepRandomEngine
-{
-	public:
-		Ranlux64Engine();
-		virtual ~Ranlux64Engine();};
-class RandFlat; : public HepRandom //tto jest niepotrzebne
-{
-  public:
-        inline RandFlat ( HepRandomEngine* anEngine );
-	virtual~ RandFlat();
-};*/
+
 class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 {
   public:
-    Bina_PrimaryGeneratorAction(Bina_DetectorConstruction*);
+    Bina_PrimaryGeneratorAction();
    ~Bina_PrimaryGeneratorAction();
 //////////////////////////////
 // Generation Parameters
@@ -54,12 +44,16 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
       xyz_mwpc2[3], par_mwpc[5], dim_delta[4], xyz_delta[6], xyz_degrader[3] ,
       exit_win_z, exit_win_th, exit_win_rad, z_pipe, dim_degrader[3] ;
     double generator_min, generator_max;
+    G4String FileName;
+    double tes1[4], tes2[4], tes3[4], tes4[4];
+    int tempGetChoice; 
+     int tempProcNb;
   public:
     void GeneratePrimaries(G4Event*);
 
-    inline static double* GetStartEnergy (double en1 = -1., double en2 = -1., double en3 = -1., double en4 = -1.)
+     double* GetStartEnergy (double en1 = -1., double en2 = -1., double en3 = -1., double en4 = -1.)
     {
-      static double tes1[4];
+
       if (en1 != -1.)
       {
         tes1[0] = en1;
@@ -70,9 +64,9 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
       return tes1;
     };
 
-    inline static double* GetStartAngleTheta (double ang1 = -1., double ang2 = -1., double ang3 = -1., double ang4 = -1.)
+     double* GetStartAngleTheta (double ang1 = -1., double ang2 = -1., double ang3 = -1., double ang4 = -1.)
     {
-      static double tes2[4];
+
       if (ang1 != -1.)
       {
         tes2[0] = ang1;
@@ -83,9 +77,9 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
       return tes2;
     };
 
-    inline static double* GetStartAnglePhi (double ang1 = -1., double ang2 = -1., double ang3 = -1., double ang4 = -1.)
+     double* GetStartAnglePhi (double ang1 = -1., double ang2 = -1., double ang3 = -1., double ang4 = -1.)
     {
-      static double tes3[4];
+
       if (ang1 != -1.)
       {
         tes3[0] = ang1;
@@ -96,28 +90,28 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
       return tes3;
     };
 
-    inline static double* GetStartPosition (double v1 = 0., double v2 = 0., double v3 = 0.)
+     double* GetStartPosition (double x1 = 0., double x2 = 0., double x3 = 0.)
     {
-      static double tes3[3];
-          if ((v1 != 0.)||(v2 != 0.)||(v3 != 0.))
+
+          if ((x1 != 0.)||(x2 != 0.)||(x3 != 0.))
       {
-        tes3[0] = v1;	tes3[1] = v2;	tes3[2] = v3;
+        tes4[0] = x1;	tes4[1] = x2;	tes4[2] = x3;
       }
-      return tes3;
+      return tes4;
     }
 
-    inline static int ProcNb(int num = 10)
+     int ProcNb(int num = 10)
     {
-      static int temp;
-      if (num != 10) temp = num;
-      return temp;
+
+      if (num != 10) tempProcNb = num;
+      return tempProcNb;
     };
 
-    inline static int GetChoice (int num = 10)
+     int GetChoice (int num = 10)
     {
-      static int temp;
-      if (num != 10) temp = num;
-      return temp;
+
+      if (num != 10) tempGetChoice = num;
+      return tempGetChoice;
     };
     
 
@@ -139,6 +133,8 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     void read_part_momentum(double*);
     void read_part_momentum4(double*);
     void open_pluto_file();
+    
+    static MyFileReader* fileReader;
 
 
 

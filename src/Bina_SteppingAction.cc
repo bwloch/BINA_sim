@@ -12,6 +12,7 @@
 
 //#include "G4TouchableHandle.hh"
 #include "Bina_PhysicsMessenger.hh"
+#include "Bina_PhysicsList.hh"
 #include "Bina_PrimaryGeneratorAction.hh"
 #include "G4UnitsTable.hh"
 
@@ -22,26 +23,18 @@
 
 
 
+
 //std::ofstream file,file2,file3;
-Bina_SteppingAction::Bina_SteppingAction(Bina_PhysicsList* myPL, Bina_EventAction* myEvt)
-  : myPhysicsList(myPL),fEventAction(myEvt)
+Bina_SteppingAction::Bina_SteppingAction(Bina_EventAction* myEvt, Bina_PrimaryGeneratorAction* myGen)
+  : fEventAction(myEvt) , fPrimaryGeneratorAction(myGen)
 {
   G4cout<<"Stepping action=====================================================================-=-=-=-=-=-\n";
+static Bina_PhysicsList* myPL = Bina_PhysicsList::Instance();
 
-/*
-  file_types=myPL->GetFileOutputs();
-  G4cout<<"file_types==Bina_PhysicsList=="<<file_types<<'\n';
-    if (file_types&1)
-    file.open("./Bina_out1.dat");
-  if (file_types&2)
-    file2.open("./Bina_out2.dat");
-  if (file_types&4)
-    file3.open("./Bina_out3.dat");
-    
-    */
   int i;
-  static double en_t[3],theta_t[3],phi_t[3],pos_t[3];
-
+ // static double en_t[3],theta_t[3],phi_t[3],pos_t[3];
+  
+/*
   for (i=0;i<3;i++)
   {
     en_t[i] = 0.;
@@ -53,6 +46,7 @@ Bina_SteppingAction::Bina_SteppingAction(Bina_PhysicsList* myPL, Bina_EventActio
   phi = &phi_t[0];
   energy = &en_t[0];
   position = &pos_t[0];
+  */
   energy_broadening=myPL->GetBroadening();
 }
 
@@ -185,11 +179,11 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
 /*
         if (file_types&4)
         {
-          if (Bina_PrimaryGeneratorAction::GetChoice()==2) 
+          if (fPrimaryGeneratorAction->GetChoice()==2) 
           {
             if (tab[1]==1) {tab[11]=secProtEnergy; tab[12]=secProtDetNr;}
             if (tab[0]!=index0) {
-//    G4cout<<(Bina_PrimaryGeneratorAction::GetChoice()==2&&((tab[0]!=index0&&index1!=0)||(index1==0&&tab[1]==2)))<<'\<';
+//    G4cout<<(fPrimaryGeneratorAction->GetChoice()==2&&((tab[0]!=index0&&index1!=0)||(index1==0&&tab[1]==2)))<<'\<';
           index0=(int)tab[0];
           for (i=index1;i<3;i++) {    
             file3<<std::setw(17)<<tab[0]<<std::setw(4)<<0<<std::setw(4)
@@ -207,14 +201,14 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
           <<std::setw(15)<<0<<std::setw(15)<<0
           <<std::setw(15)<<0<<std::setw(15)<<0;
           }
-    //  G4cout<<index0<<' '<<index1<<' '<<tab[0]<<' '<<tab[1]<<' '<<Bina_PrimaryGeneratorAction::GetChoice()<<'\n';
+    //  G4cout<<index0<<' '<<index1<<' '<<tab[0]<<' '<<tab[1]<<' '<<fPrimaryGeneratorAction->GetChoice()<<'\n';
         }
       file3<<std::setw(17)<<tab[0]<<std::setw(4)<<tab[1]<<std::setw(4)
       <<tab[2]<<std::setw(4)<<tab[4]<<std::setw(15)<<tab[11]
       <<std::setw(15)<<tab3[3]<<std::setw(15)<<tab3[4]
       <<std::setw(15)<<tab3[5]<<std::setw(15)<<tab[12];//
       index1++;
-      if (Bina_PrimaryGeneratorAction::GetChoice()!=2||index1==3) {
+      if (fPrimaryGeneratorAction->GetChoice()!=2||index1==3) {
         file3<<G4endl;
         index1=0;
         index0++;
@@ -239,7 +233,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
     }
     //TEST
     //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-    position = Bina_PrimaryGeneratorAction::GetStartPosition();
+    position = fPrimaryGeneratorAction->GetStartPosition();
     if(tab[1]>0) fEventAction->AddHits(tab[1],tab[5],tab[6],tab3[5],tab3[4],tab3[3],tab[11],tab[7],tab[12],tab[8],position[0],position[1],position[2],tab[2],tab[4],tab[3]);
     for(int licz=0;licz<25;licz++) {
     	tab[licz]=-999;
@@ -272,13 +266,13 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
     {
       theLastPVname = thePrePVname;
 
-      npd_choice = Bina_PrimaryGeneratorAction::GetChoice();
+      npd_choice = fPrimaryGeneratorAction->GetChoice();
       startEnergy = theTrack->GetVertexKineticEnergy();
 
-      energy = Bina_PrimaryGeneratorAction::GetStartEnergy();
-      phi = Bina_PrimaryGeneratorAction::GetStartAnglePhi();
-      theta = Bina_PrimaryGeneratorAction::GetStartAngleTheta();
-      position = Bina_PrimaryGeneratorAction::GetStartPosition();
+      energy = fPrimaryGeneratorAction->GetStartEnergy();
+      phi = fPrimaryGeneratorAction->GetStartAnglePhi();
+      theta = fPrimaryGeneratorAction->GetStartAngleTheta();
+      position = fPrimaryGeneratorAction->GetStartPosition();
       i = 0; // keep the compiler quiet
       if (npd_choice < 0) i=0;
       else if (npd_choice < 2)

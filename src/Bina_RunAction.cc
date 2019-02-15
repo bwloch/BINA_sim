@@ -1,19 +1,18 @@
 #include "Bina_RunAction.hh"
-#include "Bina_EventAction.hh"
+
 
 #include "G4Run.hh"
 #include "G4RunManager.hh"
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
 
-Bina_RunAction::Bina_RunAction(Bina_EventAction* eventAction)
-: fEventAction(eventAction)
+Bina_RunAction::Bina_RunAction()
 { 
 G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 G4cout << "\n\t MyLog: Using " << analysisManager->GetType() << G4endl;
 //Creating Ntuples
 analysisManager->SetFileName("test.root");
-if( fEventAction){
+
 analysisManager->SetFirstNtupleId(1);
 analysisManager->CreateNtuple("T","Title");
 analysisManager->CreateNtupleIColumn(1,"evNum");
@@ -83,13 +82,16 @@ analysisManager->CreateNtupleDColumn(1,"fEddE2");
 analysisManager->CreateNtupleDColumn(1,"fEddE3");
 analysisManager->CreateNtupleDColumn(1,"fEddE4");
 analysisManager->FinishNtuple();
-}
+
 }
 Bina_RunAction::~Bina_RunAction(){
- delete G4AnalysisManager::Instance(); 
+
+  delete G4AnalysisManager::Instance(); 
 }
 void Bina_RunAction::BeginOfRunAction(const G4Run* ){
+  if (IsMaster()) {
 fbegin = clock(); //Start clock
+}
 G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 analysisManager->OpenFile();
 }
@@ -98,10 +100,12 @@ void Bina_RunAction::EndOfRunAction(const G4Run* ){
 //Writing and closing root file
 G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 analysisManager->Write();
-analysisManager->CloseFile();
+//analysisManager->CloseFile();
 //calculating time
+  if (IsMaster()) {
 fend = clock();
 double time_spent;
 time_spent = (double)(fend - fbegin) / CLOCKS_PER_SEC;
 G4cout<<"\n\t MyLog: czas wykonywania programu ="<<time_spent<<G4endl;
+}
 }

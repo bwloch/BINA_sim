@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/menorzinho/GEANT4/Sim/symulacja_Bogus
+CMAKE_SOURCE_DIR = /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/menorzinho/GEANT4/Sim/symulacja_Bogus
+CMAKE_BINARY_DIR = /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim
 
 #=============================================================================
 # Target rules for target CMakeFiles/bina_breakup2.11_dTarget.dir
@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/menorzinho/GEANT4/Sim/symulacja_Bogus
 CMakeFiles/bina_breakup2.11_dTarget.dir/all:
 	$(MAKE) -f CMakeFiles/bina_breakup2.11_dTarget.dir/build.make CMakeFiles/bina_breakup2.11_dTarget.dir/depend
 	$(MAKE) -f CMakeFiles/bina_breakup2.11_dTarget.dir/build.make CMakeFiles/bina_breakup2.11_dTarget.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12 "Built target bina_breakup2.11_dTarget"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 "Built target bina_breakup2.11_dTarget"
 .PHONY : CMakeFiles/bina_breakup2.11_dTarget.dir/all
 
 # Include target in all.
@@ -76,9 +76,9 @@ all: CMakeFiles/bina_breakup2.11_dTarget.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/bina_breakup2.11_dTarget.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/bina_breakup2.11_dTarget.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/menorzinho/GEANT4/Sim/symulacja_Bogus/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bwloch/GEANT4/Symulacje/BINA/BINA_sim/CMakeFiles 0
 .PHONY : CMakeFiles/bina_breakup2.11_dTarget.dir/rule
 
 # Convenience name for target.

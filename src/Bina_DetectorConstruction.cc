@@ -27,6 +27,19 @@
 
 using namespace CLHEP;
 
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+Bina_DetectorConstruction* Bina_DetectorConstruction::fgInstance = 0;
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+Bina_DetectorConstruction* Bina_DetectorConstruction::Instance()
+{
+  return fgInstance;
+}
+
+
 Bina_DetectorConstruction::Bina_DetectorConstruction()
 :
 //npd_choice(0),
@@ -61,6 +74,7 @@ Bina_DetectorConstruction::Bina_DetectorConstruction()
 
 
 {
+fgInstance = this;
  // fpMagField = new Bina_MagneticField();
  int i;
 
@@ -108,6 +122,7 @@ Bina_DetectorConstruction::Bina_DetectorConstruction()
 
 Bina_DetectorConstruction::~Bina_DetectorConstruction()
 {
+fgInstance = 0;
 delete detectorMessenger;
 }
 

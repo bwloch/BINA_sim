@@ -13,6 +13,7 @@ class Bina_PhysicsList: public G4VModularPhysicsList, public G4UImessenger
   public:
     Bina_PhysicsList();
    ~Bina_PhysicsList();
+   static Bina_PhysicsList* Instance();
     void SetNeutronModel(G4int neutrony)       {neutrons_model=neutrony;};
 //    void SetNeutronType(G4int type)              {neutrons_type=type;};
     void SetBroadening(G4int broad)              {broadening=broad;};
@@ -38,7 +39,7 @@ class Bina_PhysicsList: public G4VModularPhysicsList, public G4UImessenger
     G4VPhysicsConstructor*  emPhysicsList;
  Bina_PhysicsList* phyList;
     G4VPhysicsConstructor*  particleList;
-
+	static Bina_PhysicsList* fgInstance;
   protected:
     // Construct particle and physics
     void SetCuts();
