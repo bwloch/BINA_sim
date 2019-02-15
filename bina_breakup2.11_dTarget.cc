@@ -22,11 +22,11 @@
 int main(int argc,char** argv) 
 {
 
-#ifdef G4MULTITHREADEDd
+#ifdef G4MULTITHREADED
 G4cout<<"**************** Multi Thread *************"<<G4endl;
  G4MTRunManager* runManager = new G4MTRunManager;     
-// runManager->SetNumberOfThreads(G4Threading::G4GetNumberOfCores()); 
- runManager->SetNumberOfThreads(2); 
+ runManager->SetNumberOfThreads(G4Threading::G4GetNumberOfCores()); 
+// runManager->SetNumberOfThreads(2); 
 #else
 G4cout<<"**************** Single Thread *************"<<G4endl;
      G4RunManager* runManager = new G4RunManager; 

@@ -32,8 +32,8 @@ Bina_SteppingAction::Bina_SteppingAction(Bina_EventAction* myEvt, Bina_PrimaryGe
 static Bina_PhysicsList* myPL = Bina_PhysicsList::Instance();
 
   int i;
- // static double en_t[3],theta_t[3],phi_t[3],pos_t[3];
-  
+
+G4cout<<"\n\t MyLog: SteppingAction Konstruktor\n";
 /*
   for (i=0;i<3;i++)
   {
@@ -48,6 +48,14 @@ static Bina_PhysicsList* myPL = Bina_PhysicsList::Instance();
   position = &pos_t[0];
   */
   energy_broadening=myPL->GetBroadening();
+     once = 1;
+   ilosc = 0;
+   bound=0;
+   index0=0;
+   index1=0;
+   SNumberPrev = 0;
+   theLastPVname = "0";
+   theLastCopyNo = 0;
 }
 
 Bina_SteppingAction::~Bina_SteppingAction()
@@ -62,17 +70,11 @@ G4cout<<" \n\t MyLog: ~BinaSteppingAction";
 
 void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
 {
-//G4cout << "\n\t MyLog: UserSteppingAction"<<G4endl;
-  G4Track * theTrack = theStep->GetTrack();
+//G4cout<<"\n\t MyLog: SteppingAction UserSteppingAction\n";
 
-  static int once = 1, ilosc = 0, bound=0;//,ilosc2 = 0,
-//          first=1,   firsts = 1, bound = 0, next = 0,;//, ebound = 0;
-  static G4double tab[25], tab2[25], tab3[10], secProtEnergy,secProtDetNr;
+  G4Track * theTrack = theStep->GetTrack();
   int i;
   double startEnergy, npd_choice;
-  static G4String prevParentName;
-  static int index0=0, index1=0;
-
   G4ParticleDefinition * ParticleType = theTrack->GetDefinition();
   G4StepPoint * thePrePoint = theStep->GetPreStepPoint();
   G4VPhysicalVolume * thePrePV = thePrePoint->GetPhysicalVolume();
@@ -89,11 +91,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
 
   G4int SNumber = theTrack->GetCurrentStepNumber();  // step number
 
-  static G4int SNumberPrev = 0;
-
-
-  static G4String theLastPVname = "0";
-  static G4int theLastCopyNo = 0;
+   
 /*  if(thePrePVname(0,12)=="Delta_E_BC40"||thePrePVname(0,7)=="Salad_B"){
   thePreCopyNo = renumer[thePreCopyNo]; }
   if(thePostPVname(0,12)=="Delta_E_BC40"||thePostPVname(0,7)=="Salad_B"){
@@ -146,90 +144,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
           if (edet<0) edet = 0;
           tab[13] = edet;
         }
-/*
-        if (file_types&1) 
-        {
-          file <<G4endl;
-          // write to file Bina.dat
-          file << std::setw(7)<<tab[0];
-          for (i=1;i<5;i++) file << std::setw(3)<<tab[i];
 
-          for (i=5;i<15;i++)
-          {
-            if (tab[i] == 0) file << std::setw(14)<<"0";
-	    else file << std::
-	    setw(14)<<tab[i];
-          }
-        }
-        */
-      // write to file Bina_ext.dat
-      /*
-        if (file_types&2) 
-        {
-          file2 <<G4endl;
-          file2 << std::setw(7)<<tab[0];
-          file2 << std::setw(3)<<tab[1];
-        }
-	*/
-     //   if (tab[0]==0&&(index1>3||index1<0)) index0=0,index1=0; tutaj tez komenatrz
-
-        //modified by awilczek\/
-//        G4cout<<index1<<' '<<index0<<'\n';
-
-/*
-        if (file_types&4)
-        {
-          if (fPrimaryGeneratorAction->GetChoice()==2) 
-          {
-            if (tab[1]==1) {tab[11]=secProtEnergy; tab[12]=secProtDetNr;}
-            if (tab[0]!=index0) {
-//    G4cout<<(fPrimaryGeneratorAction->GetChoice()==2&&((tab[0]!=index0&&index1!=0)||(index1==0&&tab[1]==2)))<<'\<';
-          index0=(int)tab[0];
-          for (i=index1;i<3;i++) {    
-            file3<<std::setw(17)<<tab[0]<<std::setw(4)<<0<<std::setw(4)
-            <<0<<std::setw(4)<<0<<std::setw(15)<<0
-            <<std::setw(15)<<0<<std::setw(15)<<0
-            <<std::setw(15)<<0<<std::setw(15)<<0;
-            }
-          index1=0;
-          file3<<G4endl;
-          }
-       
-        if (index1==0&&tab[1]==2) {
-          file3<<std::setw(17)<<tab[0]<<std::setw(4)<<0<<std::setw(4)
-          <<0<<std::setw(4)<<0<<std::setw(15)<<0
-          <<std::setw(15)<<0<<std::setw(15)<<0
-          <<std::setw(15)<<0<<std::setw(15)<<0;
-          }
-    //  G4cout<<index0<<' '<<index1<<' '<<tab[0]<<' '<<tab[1]<<' '<<fPrimaryGeneratorAction->GetChoice()<<'\n';
-        }
-      file3<<std::setw(17)<<tab[0]<<std::setw(4)<<tab[1]<<std::setw(4)
-      <<tab[2]<<std::setw(4)<<tab[4]<<std::setw(15)<<tab[11]
-      <<std::setw(15)<<tab3[3]<<std::setw(15)<<tab3[4]
-      <<std::setw(15)<<tab3[5]<<std::setw(15)<<tab[12];//
-      index1++;
-      if (fPrimaryGeneratorAction->GetChoice()!=2||index1==3) {
-        file3<<G4endl;
-        index1=0;
-        index0++;
-        }
-      }
-      
-      */
-
-//G4cout<<(index1++)<<' '<<(index0++)<<'\n';
-  
-  /*
-    if (file_types&2) {
-      for (i=0;i<6;i++) file2 << std::setw(14) <<tab3[i];
-
-      for (i=0;i<10;i++) {
-        if (tab2[i] == 0) file2 << std::setw(14)<<"0";
-        else file2 << std::setw(14)<<tab2[i];
-        }
-      }
-      
-      */
     }
     //TEST
     //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
@@ -242,6 +157,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
     for(int licz=0;licz<10;licz++) {
     	tab3[licz]=-999;
     }
+   // G4cout<<"\n\t MyLog: SteppingAction UserSteppingAction ->Add Hits\n";
     //G4cout<<"\t MyLog: position[0]="<<position[0]<<G4endl;
     //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     //TEST
