@@ -26,7 +26,7 @@ int main(int argc,char** argv)
 G4cout<<"**************** Multi Thread *************"<<G4endl;
  G4MTRunManager* runManager = new G4MTRunManager;     
  runManager->SetNumberOfThreads(G4Threading::G4GetNumberOfCores()); 
-// runManager->SetNumberOfThreads(2); 
+ //runManager->SetNumberOfThreads(1); 
 #else
 G4cout<<"**************** Single Thread *************"<<G4endl;
      G4RunManager* runManager = new G4RunManager; 
@@ -39,7 +39,8 @@ G4cout<<"**************** Single Thread *************"<<G4endl;
 
  runManager->SetUserInitialization(Bina_detector);
  runManager->SetUserInitialization(Bina_physics);
-runManager->SetUserInitialization(new Bina_ActionInitialization());
+ Bina_ActionInitialization* Bina_Action_Init = new Bina_ActionInitialization();
+runManager->SetUserInitialization(Bina_Action_Init);
  if(argc<4)
  {
   G4String command = "/control/execute ";
@@ -68,7 +69,7 @@ runManager->SetUserInitialization(new Bina_ActionInitialization());
   session = new G4UIterminal(new G4UItcsh);
   
 
-  if(argc<2)
+  if(argc<=2)
   {
     fileInp = "run.mac";
     struct stat fileData;
@@ -78,12 +79,13 @@ runManager->SetUserInitialization(new Bina_ActionInitialization());
     }
   }
 
-  
+  /*
   if(argc==3||argc==2) 
   {
     fileInp = argv[1];
     UI->ApplyCommand(command+fileInp);
   }
+  */
     session->SessionStart();
     delete session;
 

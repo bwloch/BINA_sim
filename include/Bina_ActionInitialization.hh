@@ -12,7 +12,7 @@ class Bina_ActionInitialization : public G4VUserActionInitialization
 		virtual void BuildForMaster() const;
 	
 	private:
-	
+
 	
 };
 #endif

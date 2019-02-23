@@ -77,7 +77,7 @@ fX1vec.clear();
 
  G4int evtNb = evt->GetEventID();
  getNb(evtNb);
- if (!(evtNb%100)) G4cout << "\n--> Begin of event: " << evtNb <<G4endl;
+ if (!(evtNb%10000)) G4cout << "\n--> Begin of event: " << evtNb <<G4endl;
  //G4cout<<"\n\t MyLog: początek Eventu"<<G4endl;
 }
 

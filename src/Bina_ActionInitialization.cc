@@ -7,7 +7,9 @@
 
 Bina_ActionInitialization::Bina_ActionInitialization()
  : G4VUserActionInitialization()
-{}
+{
+
+}
 
 Bina_ActionInitialization::~Bina_ActionInitialization()
 {}

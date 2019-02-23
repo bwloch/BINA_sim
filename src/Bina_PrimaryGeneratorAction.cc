@@ -82,10 +82,10 @@ FileName="";
   n_mass = particle->GetPDGMass()/1000.;
 
   //*********************** Uwaga dokladnosc masy to 6 miejsc po przecinku *GeV ***********
-  open_pluto_file();
 
   if (npd_choice <  0)
   {
+  FileName="data/ntuple_dd_break.root";
     particleGun1 = new G4ParticleGun(n_particle);
     if (npd_choice == -1) particle = particleTable->FindParticle("proton");
     else if (npd_choice == -2) particle = particleTable->FindParticle("deuteron");
@@ -178,6 +178,7 @@ FileName="";
   else if(npd_choice == 4)
   {
 	FileName="data/output_break_dd_ppnn.txt";
+
     event_cleaner_particle_gun = new G4ParticleGun(n_particle);
     particleGun1 = new G4ParticleGun(n_particle);
     particleGun2 = new G4ParticleGun(n_particle);
@@ -266,11 +267,12 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 // Black Magic end	
   	
   	//reading particle
-	read_part_momentum(pluto_momentum);
-  	v4.setE(pluto_momentum[0]);
-  	v4.setPx(pluto_momentum[1]);
-  	v4.setPy(pluto_momentum[2]);
-  	v4.setPz(pluto_momentum[3]);
+  	  	if(fileReader)
+  {
+    G4AutoLock lock(&Bina_PrimGenMutex);
+    v1=fileReader->GetAnEvent();
+  }
+
   	particleGun1->SetParticleMomentumDirection(v4);
   	bt1=(v4.e()-v4.m());
   	t1=v4.theta();
@@ -521,12 +523,14 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     	event_cleaner_particle_gun->GeneratePrimaryVertex(anEvent);
 // Black Magic end	
 	
-	
-	read_part_momentum(pluto_momentum1);
-  	v1.setE(pluto_momentum1[0]);
-  	v1.setPx(pluto_momentum1[1]);
-  	v1.setPy(pluto_momentum1[2]);
-  	v1.setPz(pluto_momentum1[3]);
+	  {
+    G4AutoLock lock(&Bina_PrimGenMutex);
+    v1 = fileReader->GetAnEvent();
+    v2 = fileReader->GetAnEvent();
+    v3 = fileReader->GetAnEvent();
+    v4 = fileReader->GetAnEvent();
+  }
+  //reading proton
   	particleGun1->SetParticleMomentumDirection(v1);
   	bt1=(v1.e()-v1.m());
   	t1=v1.theta();
@@ -535,11 +539,6 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   	particleGun1->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
   	particleGun1->GeneratePrimaryVertex(anEvent);
   	//reading proton
-  	read_part_momentum(pluto_momentum2);
-  	v2.setE(pluto_momentum2[0]);
-  	v2.setPx(pluto_momentum2[1]);
-  	v2.setPy(pluto_momentum2[2]);
-  	v2.setPz(pluto_momentum2[3]);
   	bt2=(v2.e()-v2.m());
   	t2=v2.theta();
   	fi2=v2.phi();
@@ -549,11 +548,6 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   	particleGun2->GeneratePrimaryVertex(anEvent);
   	  	if(Is_Neutron_Simulated==1){
   	  	
-  	  	read_part_momentum(pluto_momentum3);
-	  	v3.setE(pluto_momentum3[0]);
-	  	v3.setPx(pluto_momentum3[1]);
-	  	v3.setPy(pluto_momentum3[2]);
-	  	v3.setPz(pluto_momentum3[3]);
 	  	bt3=(v3.e()-v3.m());
 	  	t3=v3.theta();
 	  	fi3=v3.phi();
@@ -562,11 +556,6 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 	  	particleGun3->SetParticlePosition(G4ThreeVector(vertex[0],vertex[1],vertex[2]));
 	  	particleGun3->GeneratePrimaryVertex(anEvent);
 	  	
-	  	read_part_momentum(pluto_momentum4);
-	  	v4.setE(pluto_momentum4[0]);
-	  	v4.setPx(pluto_momentum4[1]);
-	  	v4.setPy(pluto_momentum4[2]);
-	  	v4.setPz(pluto_momentum4[3]);
 	  	bt4=(v4.e()-v4.m());
 	  	t4=v4.theta();
 	  	fi4=v4.phi();
@@ -576,10 +565,6 @@ void Bina_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 	  	particleGun3->GeneratePrimaryVertex(anEvent);
   
  	}
-	else {
-	 	 read_part_momentum(pluto_momentum);
-	 	 read_part_momentum(pluto_momentum);
-	}
       GetStartEnergy(bt1*1000.,bt2*1000.,bt3*1000.,bt4*1000.);
       GetStartAngleTheta(t1*180./M_PI,t2*180./M_PI,t3*180./M_PI,t4*180./M_PI);
       GetStartAnglePhi(fi1*180./M_PI,fi2*180./M_PI,fi3*180./M_PI,fi4*180./M_PI);
