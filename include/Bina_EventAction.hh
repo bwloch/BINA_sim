@@ -30,7 +30,8 @@ class Bina_EventAction : public G4UserEventAction
     G4int fFlagMWPC3, fFlagE3,fFlagdE3;
         G4int fFlagMWPC4, fFlagE4,fFlagdE4;
   G4int Part_num_n, Part_num_p;
-  
+  G4double fTOF_E1, fTOF_E2,fTOF_E3,fTOF_E4;
+    G4double fTOF_dE1, fTOF_dE2,fTOF_dE3,fTOF_dE4;
   
   public:
     Bina_EventAction();
@@ -39,7 +40,7 @@ class Bina_EventAction : public G4UserEventAction
   public:
     virtual void   BeginOfEventAction(const G4Event*);
     virtual void   EndOfEventAction(const G4Event*);
-    void AddHits(G4int Ptype, G4double X, G4double Y, G4double Th, G4double phi, G4double En, G4double Ed, G4double EddE, G4double E, G4double dE, G4double Xv, G4double Yv, G4double Zv, G4int FlagMWPC, G4int FlagE, G4int FlagdE);
+    void AddHits(G4int Ptype, G4double X, G4double Y, G4double Th, G4double phi, G4double En, G4double Ed, G4double EddE, G4double E, G4double dE, G4double Xv, G4double Yv, G4double Zv, G4int FlagMWPC, G4int FlagE, G4int FlagdE, G4double TOF_E, G4double TOF_dE);
     std::vector<G4double>& GetfX1vec() { return fX1vec; }
     inline static int getNb(int num = -1 )
     {

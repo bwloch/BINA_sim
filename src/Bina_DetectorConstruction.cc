@@ -151,6 +151,8 @@ G4VPhysicalVolume* Bina_DetectorConstruction::Construct()
   double ang_dif,ang;
 
 
+
+
   G4double pipe_dim[21] = {  0.0,  3.56, 3.75,
      		 	3.5,  3.60, 3.80,
      		 	10.2, 3.60, 3.80,	//!!!!!!!! uwaga zmiana ostatniej wartosci do 3.80 z 4.60

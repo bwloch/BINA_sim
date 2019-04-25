@@ -22,6 +22,7 @@ class Bina_SteppingAction : public G4UserSteppingAction
   private:
   double *energy, *theta, *phi ,*position;
   G4double tab[25], tab2[25], tab3[10], secProtEnergy,secProtDetNr;
+  G4double tof_e, tof_de;
   int once, ilosc, bound;
   G4String prevParentName;
   int index0, index1;

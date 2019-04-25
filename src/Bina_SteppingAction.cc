@@ -149,7 +149,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
     //TEST
     //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     position = fPrimaryGeneratorAction->GetStartPosition();
-    if(tab[1]>0) fEventAction->AddHits(tab[1],tab[5],tab[6],tab3[5],tab3[4],tab3[3],tab[11],tab[7],tab[12],tab[8],position[0],position[1],position[2],tab[2],tab[4],tab[3]);
+    if(tab[1]>0) fEventAction->AddHits(tab[1],tab[5],tab[6],tab3[5],tab3[4],tab3[3],tab[11],tab[7],tab[12],tab[8],position[0],position[1],position[2],tab[2],tab[4],tab[3],tof_e,tof_de);
     for(int licz=0;licz<25;licz++) {
     	tab[licz]=-999;
     	tab2[licz]=-999;
@@ -163,6 +163,8 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
     //TEST
   SNumberPrev = 0;
   tab[2]=tab[3]=tab[4]=0;
+  tof_e=0;
+  tof_de=0;
   }
   else SNumberPrev = SNumber;
 
@@ -275,6 +277,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
 	      if(thePrePVname(0,7)!="DeltaE_")tab[8 + 2*ilosc] = thePostCopyNo+1;
 	      tab2[2 + 2*ilosc] = theTrack->GetKineticEnergy();
 	      bound = 0;
+	      if(ilosc==0) tof_de=thePostPoint->GetLocalTime();
 	    }
 	}
       //      if(thePostPoint->GetStepStatus() == fGeomBoundary)
@@ -327,6 +330,7 @@ void Bina_SteppingAction::UserSteppingAction(const G4Step * theStep)
 		if(thePrePVname(0,5)!="EDet_")tab[12 + 2*ilosc] = thePostCopyNo;
 		tab2[6 + 2*ilosc] = theTrack->GetKineticEnergy();
 		bound = 0;
+		if(ilosc==0) tof_e=thePostPoint->GetLocalTime();
 	      }
 	  }
 	if(theTrack->GetParentID()==0) //only primaries!

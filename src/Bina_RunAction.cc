@@ -11,7 +11,7 @@ Bina_RunAction::Bina_RunAction()
 G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 G4cout << "\n\t MyLog: Using " << analysisManager->GetType() << G4endl;
 //Creating Ntuples
-analysisManager->SetFileName("test.root");
+analysisManager->SetFileName("/mnt/disk3/WLOCH/PLUTO/ASCI/dp/test.root");
 
 analysisManager->SetFirstNtupleId(1);
 analysisManager->CreateNtuple("T","Title");
@@ -81,6 +81,14 @@ analysisManager->CreateNtupleDColumn(1,"fEddE1");
 analysisManager->CreateNtupleDColumn(1,"fEddE2");
 analysisManager->CreateNtupleDColumn(1,"fEddE3");
 analysisManager->CreateNtupleDColumn(1,"fEddE4");
+analysisManager->CreateNtupleDColumn(1,"fTOF_E1");
+analysisManager->CreateNtupleDColumn(1,"fTOF_E2");
+analysisManager->CreateNtupleDColumn(1,"fTOF_E3");
+analysisManager->CreateNtupleDColumn(1,"fTOF_E4");
+analysisManager->CreateNtupleDColumn(1,"fTOF_dE1");
+analysisManager->CreateNtupleDColumn(1,"fTOF_dE2");
+analysisManager->CreateNtupleDColumn(1,"fTOF_dE3");
+analysisManager->CreateNtupleDColumn(1,"fTOF_dE4");
 analysisManager->FinishNtuple();
 
 }

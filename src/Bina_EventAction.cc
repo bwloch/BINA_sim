@@ -72,12 +72,19 @@ fEddE1=-999;
 fEddE2=-999;
 fEddE3=-999;
 fEddE4=-999;
+fTOF_E1=-999.;
+fTOF_E2=-999.;
+fTOF_E3=-999.;
+fTOF_dE1=-999.;
+fTOF_dE2=-999.;
+fTOF_dE3=-999.;
+
 fX1vec.clear();
 //G4cout<<"\n\t MyLog: BeginOfEventAction";
 
  G4int evtNb = evt->GetEventID();
  getNb(evtNb);
- if (!(evtNb%10000)) G4cout << "\n--> Begin of event: " << evtNb <<G4endl;
+ if (!(evtNb%1000)) G4cout << "\n--> Begin of event: " << evtNb <<G4endl;
  //G4cout<<"\n\t MyLog: początek Eventu"<<G4endl;
 }
 
@@ -155,12 +162,23 @@ analysisManager->FillNtupleDColumn(1,62,fEddE1);
 analysisManager->FillNtupleDColumn(1,63,fEddE2);
 analysisManager->FillNtupleDColumn(1,64,fEddE3);
 analysisManager->FillNtupleDColumn(1,65,fEddE4);
+
+analysisManager->FillNtupleDColumn(1,66,fTOF_E1);
+analysisManager->FillNtupleDColumn(1,67,fTOF_E2);
+analysisManager->FillNtupleDColumn(1,68,fTOF_E3);
+analysisManager->FillNtupleDColumn(1,69,fTOF_E4);
+analysisManager->FillNtupleDColumn(1,70,fTOF_dE1);
+analysisManager->FillNtupleDColumn(1,71,fTOF_dE2);
+analysisManager->FillNtupleDColumn(1,72,fTOF_dE3);
+analysisManager->FillNtupleDColumn(1,73,fTOF_dE4);
+
+
 analysisManager->AddNtupleRow(1);
 //G4cout<<" \n\t Myog: EventAction En1="<<fEn1<<" \t En2="<<fEn2<<"\t En1+En2="<<fEn1+fEn2<<G4endl;
 
 }
 
-void Bina_EventAction::AddHits(G4int Ptype, G4double X, G4double Y, G4double Th, G4double phi, G4double En, G4double Ed, G4double EddE, G4double E, G4double dE, G4double Xv, G4double Yv, G4double Zv, G4int FlagMWPC, G4int FlagE, G4int FlagdE){
+void Bina_EventAction::AddHits(G4int Ptype, G4double X, G4double Y, G4double Th, G4double phi, G4double En, G4double Ed, G4double EddE, G4double E, G4double dE, G4double Xv, G4double Yv, G4double Zv, G4int FlagMWPC, G4int FlagE, G4int FlagdE, G4double TOF_E, G4double TOF_dE){
 G4int pos_num=0;
 
 //Checking particle type and its position in FBEvent structure
@@ -217,6 +235,8 @@ if(pos_num==1){
 	fFlagE1=FlagE;
 	fFlagdE1=FlagdE;
 	fEddE1=EddE;
+	fTOF_E1=TOF_E;
+	fTOF_dE1=TOF_dE;
 
 }
 if(pos_num==2){
@@ -236,6 +256,8 @@ if(pos_num==2){
 	fFlagE2=FlagE;
 	fFlagdE2=FlagdE;
 	fEddE2=EddE;
+	fTOF_E2=TOF_E;
+	fTOF_dE2=TOF_dE;
 }
 if(pos_num==3){
 //neutron
@@ -252,6 +274,8 @@ if(pos_num==3){
 	fFlagE3=FlagE;
 	fFlagdE3=FlagdE;
 	fEddE3=EddE;
+	fTOF_E3=TOF_E;
+	fTOF_dE3=TOF_dE;
 }
 
 if(pos_num==4){
@@ -269,6 +293,8 @@ if(pos_num==4){
 	fFlagE4=FlagE;
 	fFlagdE4=FlagdE;
 	fEddE4=EddE;
+	fTOF_E4=TOF_E;
+	fTOF_dE4=TOF_dE;
 }
 
 fXv=Xv;

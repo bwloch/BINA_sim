@@ -8,14 +8,15 @@ MyFileReader::~MyFileReader()
 G4LorentzVector MyFileReader::GetAnEvent()
 {
 //G4cout<<"\t MyfileReader: GetAnEvent()\n";
-  if( evList.size() == 0 )
+  if( evList.empty() )
   {
-    for(int i=0;i<1000;i++)
+    for(int i=0;i<100;i++)
     {
       G4double ee, ex, ey, ez;
       inputFile >> ee >> ex >> ey >> ez;
       
       evList.push_back( G4LorentzVector(G4ThreeVector(ex,ey,ez),ee) );
+          
     }
     //G4cout<<"\t MyfileReader: GetAnEvent() -> Reading from file\n";
   }
