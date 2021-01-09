@@ -19,17 +19,17 @@
 
 
 
-int main(int argc,char** argv) 
+int main(int argc,char** argv)
 {
 
 #ifdef G4MULTITHREADED
 G4cout<<"**************** Multi Thread *************"<<G4endl;
- G4MTRunManager* runManager = new G4MTRunManager;     
- //runManager->SetNumberOfThreads(G4Threading::G4GetNumberOfCores()-1); 
- runManager->SetNumberOfThreads(10); 
+ G4MTRunManager* runManager = new G4MTRunManager;
+ //runManager->SetNumberOfThreads(G4Threading::G4GetNumberOfCores()-1);
+ runManager->SetNumberOfThreads(10);
 #else
 G4cout<<"**************** Single Thread *************"<<G4endl;
-     G4RunManager* runManager = new G4RunManager; 
+     G4RunManager* runManager = new G4RunManager;
 #endif
 
 
@@ -46,7 +46,7 @@ runManager->SetUserInitialization(Bina_Action_Init);
   G4String command = "/control/execute ";
   G4String fileInp;
   G4UImanager * UI = G4UImanager::GetUIpointer();
-  
+
   (argc>2) ? fileInp = argv[2]:fileInp = "geo.mac";
   {
     struct stat fileData;
@@ -67,7 +67,7 @@ runManager->SetUserInitialization(Bina_Action_Init);
   runManager->Initialize();
   G4UIsession* session = 0;
   session = new G4UIterminal(new G4UItcsh);
-  
+
 
   if(argc<=2)
   {
@@ -80,7 +80,7 @@ runManager->SetUserInitialization(Bina_Action_Init);
   }
 
   /*
-  if(argc==3||argc==2) 
+  if(argc==3||argc==2)
   {
     fileInp = argv[1];
     UI->ApplyCommand(command+fileInp);

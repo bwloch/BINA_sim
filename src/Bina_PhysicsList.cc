@@ -54,12 +54,12 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
  Bina_PhysicsList* Bina_PhysicsList::fgInstance = 0;
- 
+
  Bina_PhysicsList* Bina_PhysicsList::Instance()
 {
   return fgInstance;
 }
- 
+
 Bina_PhysicsList::Bina_PhysicsList()
 :G4VModularPhysicsList()
 {
@@ -67,10 +67,10 @@ fgInstance = this;
   physicsMessenger = new Bina_PhysicsMessenger(this);
   //add new units
   //
-  new G4UnitDefinition( "millielectronVolt", "meV", "Energy", 1.e-3*eV);   
+  new G4UnitDefinition( "millielectronVolt", "meV", "Energy", 1.e-3*eV);
   new G4UnitDefinition( "mm2/g",  "mm2/g", "Surface/Mass", mm2/g);
   new G4UnitDefinition( "um2/mg", "um2/mg","Surface/Mass", um*um/mg);
-    
+
     G4cout<<"Bina_PhysicsList::file_outputs="<<file_outputs<<"===========================================-==-==-=-=-==-\n";
 
 
@@ -80,34 +80,34 @@ fgInstance = this;
 
   // Hadron Elastic scattering
 
-  
+
   // Hadron Inelastic Physics
   ////RegisterPhysics( new G4HadronPhysicsFTFP_BERT_HP(verb));
 //  RegisterPhysics( new G4HadronPhysicsQGSP_BIC_HP(verb));
 
-  if (GetNeutronModel()==0) 
+  if (GetNeutronModel()==0)
     {
     RegisterPhysics( new G4HadronElasticPhysicsHP(verb) );
-    RegisterPhysics( new G4HadronPhysicsQGSP_BERT_HP(verb));  
+    RegisterPhysics( new G4HadronPhysicsQGSP_BERT_HP(verb));
     }
-  else if (GetNeutronModel()==1) 
+  else if (GetNeutronModel()==1)
     {
     RegisterPhysics( new G4HadronElasticPhysics(verb) );
-    RegisterPhysics( new G4HadronPhysicsQGSP_BERT(verb));  
+    RegisterPhysics( new G4HadronPhysicsQGSP_BERT(verb));
     }*/
-  ////RegisterPhysics( new G4HadronInelasticQBBC(verb));        
+  ////RegisterPhysics( new G4HadronInelasticQBBC(verb));
   ////RegisterPhysics( new G4HadronPhysicsINCLXX(verb));
-  
+
   // Ion Physics
 //  RegisterPhysics( new G4IonPhysics(verb));
   ////RegisterPhysics( new G4IonINCLXXPhysics(verb));
-    
+
   // Gamma-Nuclear Physics
   RegisterPhysics( new G4EmExtraPhysics());
-  
+
   // EM physics
   RegisterPhysics(new G4EmStandardPhysics_option4());
-  
+
   // Decay
   RegisterPhysics(new G4DecayPhysics());
 
@@ -119,21 +119,24 @@ fgInstance = this;
 
 void Bina_PhysicsList::RegisterHadrons(G4String option) {
   G4int verb = 2;
-  SetVerboseLevel(verb);
+//  SetVerboseLevel(verb);
   // Hadron Elastic scattering
+  //  RegisterPhysics( new G4HadronPhysicsQGSP_BIC_HP());
+      RegisterPhysics( new G4HadronElasticPhysicsHP() );
+      RegisterPhysics( new G4HadronPhysicsQGSP_BERT_HP());
 
   if (option=='0')   {
   // Hadron Inelastic Physics
   ////RegisterPhysics( new G4HadronPhysicsFTFP_BERT_HP(verb));
-//  RegisterPhysics( new G4HadronPhysicsQGSP_BIC_HP(verb));
- //   RegisterPhysics( new G4HadronElasticPhysicsHP(verb) );
-   // RegisterPhysics( new G4HadronPhysicsQGSP_BERT_HP(verb));  
+//  RegisterPhysics( new G4HadronPhysicsQGSP_BIC_HP());
+  //  RegisterPhysics( new G4HadronElasticPhysicsHP() );
+  //  RegisterPhysics( new G4HadronPhysicsQGSP_BERT_HP());
     }
 
-  else if (option=='1') 
+  else if (option=='1')
     {
    // RegisterPhysics( new G4HadronElasticPhysics(verb) );
-   // RegisterPhysics( new G4HadronPhysicsQGSP_BERT(verb));  
+   // RegisterPhysics( new G4HadronPhysicsQGSP_BERT(verb));
     }
 }
 
@@ -155,16 +158,17 @@ void Bina_PhysicsList::SetCuts()
 //SetCutsWithDefault();
 
   SetCutValue(0.007*mm, "proton");
+  SetCutValue(0.007*mm, "triton");
   SetCutValue(0.007*mm, "e-");
   SetCutValue(0.007*mm, "e+");
-  SetCutValue(0.007*mm, "gamma");      
+  SetCutValue(0.007*mm, "gamma");
 
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 /*
-void Bina_PhysicsList::SetParamUpdate() 
+void Bina_PhysicsList::SetParamUpdate()
   {G4RunManager::GetRunManager()->SetUserAction(this);
   }
 */

@@ -78,6 +78,7 @@ fTOF_E3=-999.;
 fTOF_dE1=-999.;
 fTOF_dE2=-999.;
 fTOF_dE3=-999.;
+fnpd_choice=-999;
 
 fX1vec.clear();
 //G4cout<<"\n\t MyLog: BeginOfEventAction";
@@ -171,14 +172,14 @@ analysisManager->FillNtupleDColumn(1,70,fTOF_dE1);
 analysisManager->FillNtupleDColumn(1,71,fTOF_dE2);
 analysisManager->FillNtupleDColumn(1,72,fTOF_dE3);
 analysisManager->FillNtupleDColumn(1,73,fTOF_dE4);
-
+analysisManager->FillNtupleIColumn(1,74,fnpd_choice);
 
 analysisManager->AddNtupleRow(1);
 //G4cout<<" \n\t Myog: EventAction En1="<<fEn1<<" \t En2="<<fEn2<<"\t En1+En2="<<fEn1+fEn2<<G4endl;
 
 }
 
-void Bina_EventAction::AddHits(G4int Ptype, G4double X, G4double Y, G4double Th, G4double phi, G4double En, G4double Ed, G4double EddE, G4double E, G4double dE, G4double Xv, G4double Yv, G4double Zv, G4int FlagMWPC, G4int FlagE, G4int FlagdE, G4double TOF_E, G4double TOF_dE){
+void Bina_EventAction::AddHits(G4int Ptype, G4double X, G4double Y, G4double Th, G4double phi, G4double En, G4double Ed, G4double EddE, G4double E, G4double dE, G4double Xv, G4double Yv, G4double Zv, G4int FlagMWPC, G4int FlagE, G4int FlagdE, G4double TOF_E, G4double TOF_dE, G4int npd_choice){
 G4int pos_num=0;
 
 //Checking particle type and its position in FBEvent structure
@@ -203,9 +204,9 @@ if(Ptype==1) { //Neutron
 	else {
 		pos_num=4;
 		fP4Type=3;
-	} 
+	}
 
-} 
+}
 if(Ptype==3) {//Deuteron
 pos_num=2;
 fP2Type=2;
@@ -300,8 +301,7 @@ if(pos_num==4){
 fXv=Xv;
 fYv=Yv;
 fZv=Zv;
+fnpd_choice=npd_choice;
 fN++;
 //G4cout<<"\n\t Mylog: AddHits En1="<<En<<" \t Ptype="<<Ptype<<"";
 }
-
-

@@ -46,7 +46,7 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     double generator_min, generator_max;
     G4String FileName;
     double tes1[4], tes2[4], tes3[4], tes4[4];
-    int tempGetChoice; 
+    int tempGetChoice;
      int tempProcNb;
   public:
     void GeneratePrimaries(G4Event*);
@@ -113,7 +113,7 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
       if (num != 10) tempGetChoice = num;
       return tempGetChoice;
     };
-    
+
 
   private:
     G4LorentzVector v1,v2,v3,v4;
@@ -133,7 +133,7 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     void read_part_momentum(double*);
     void read_part_momentum4(double*);
     void open_pluto_file();
-    
+
     static MyFileReader* fileReader;
 
 
@@ -157,5 +157,3 @@ class Bina_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 
 
 #endif
-
-

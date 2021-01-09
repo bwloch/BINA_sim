@@ -14,9 +14,9 @@ G4LorentzVector MyFileReader::GetAnEvent()
     {
       G4double ee, ex, ey, ez;
       inputFile >> ee >> ex >> ey >> ez;
-      
+
       evList.push_back( G4LorentzVector(G4ThreeVector(ex,ey,ez),ee) );
-          
+
     }
     //G4cout<<"\t MyfileReader: GetAnEvent() -> Reading from file\n";
   }

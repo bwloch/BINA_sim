@@ -7,12 +7,15 @@
 #include "G4SystemOfUnits.hh"
 
 Bina_RunAction::Bina_RunAction()
-{ 
+{
 G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 G4cout << "\n\t MyLog: Using " << analysisManager->GetType() << G4endl;
 //Creating Ntuples
-analysisManager->SetFileName("/mnt/disk3/WLOCH/PLUTO/ASCI/dp/test.root");
-
+//analysisManager->SetFileName("/mnt/disk3/WLOCH/PLUTO/ASCI/dp/test.root");
+//analysisManager->SetFileName("/home/wloch/BINA_sim/output/Bina_sim_pT.root");
+//analysisManager->SetFileName("/mnt/disk3/WLOCH/PLUTO/ASCI/pT/output_bina_sim/2/Bina_sim_pT.root");
+//analysisManager->SetFileName("/mnt/disk3/WLOCH/PLUTO/ASCI/dd/root2/test.root");
+analysisManager->SetFileName("/mnt/disk3/WLOCH/PLUTO/ASCI/dp100/root6/output.root");
 analysisManager->SetFirstNtupleId(1);
 analysisManager->CreateNtuple("T","Title");
 analysisManager->CreateNtupleIColumn(1,"evNum");
@@ -89,12 +92,13 @@ analysisManager->CreateNtupleDColumn(1,"fTOF_dE1");
 analysisManager->CreateNtupleDColumn(1,"fTOF_dE2");
 analysisManager->CreateNtupleDColumn(1,"fTOF_dE3");
 analysisManager->CreateNtupleDColumn(1,"fTOF_dE4");
+analysisManager->CreateNtupleIColumn(1,"fnpd_choice");
 analysisManager->FinishNtuple();
 
 }
 Bina_RunAction::~Bina_RunAction(){
 
-  delete G4AnalysisManager::Instance(); 
+  delete G4AnalysisManager::Instance();
 }
 void Bina_RunAction::BeginOfRunAction(const G4Run* ){
   if (IsMaster()) {
